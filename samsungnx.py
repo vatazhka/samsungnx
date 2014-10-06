@@ -1,40 +1,59 @@
-class iLauncher:
-    
-    def __init__(self):
-	
-	import urllib
-	samsung_response = urllib.urlopen('http://www.samsungimaging.com/customer/data/ilauncher/win/server_version.xml')
-	
-	import defusedxml
-	from defusedxml.ElementTree import parse
-	iLauncher = parse(samsung_response).getroot()
-	self.version = iLauncher.find('version').text
-	self.url = iLauncher.find('setupFile/url').text
-	self.date = iLauncher.find('desc').text
+nxCameras = {
+	'SAMSUNG NX300': 'NX300',
+	'SAMSUNG NX2000': 'NX2000',
+	'SAMSUNG NX300M': 'NX300M',
+	'SAMSUNG NX30': 'NX30',
+	'SAMSUNG NX3000': 'NX3000'}
 
-class CameraFirmware:
-    
-    def __init__(self, model):
+nxLenses = {
+	'XL1302': '10mm fisheye',
+	'XL1016': '20mm',
+	'XL1012': '30mm',
+	'XL1103': '85mm',
+	'XL1013': '18-55mm-I',
+	'XL1013i': '18-55mm-II_iFn',
+	'XL1205': '18-55mm-III_iFn',
+	'XL1014': '50-200mm-I',
+	'XL1014i': '50-200mm-II_iFn',
+	'XL1015': '20-50mm-I',
+	'XL1206': '20-50mm-II',
+	'XL1017': '18-200mm'}
+
+class iLauncher:
 	
-	import urllib
-	samsung_parameters = urllib.urlencode([
-	    ('prd_mdl_name', model),
-	    ('loc', 'global')
-	    ])
-	samsung_response = urllib.urlopen("http://www.samsungimaging.com/common/support/firmware/downloadUrlList.do?%s" % samsung_parameters)
+	def __init__(self):
+		
+		from urllib import urlopen
+		samsung_response = urlopen('http://www.samsungimaging.com/customer/data/ilauncher/win/server_version.xml')
+		
+		import defusedxml
+		from defusedxml.ElementTree import parse
+		iLauncher = parse(samsung_response).getroot()
+		self.version = iLauncher.find('version').text
+		self.url = iLauncher.find('setupFile/url').text
+		self.date = iLauncher.find('desc').text
+
+class SamsungFirmware:
 	
-	import defusedxml
-	from defusedxml.ElementTree import parse
-	firmware = parse(samsung_response).getroot()
-	self.version = firmware.find('FWVersion').text
-	self.url = firmware.find('DownloadURL').text
-	self.changelog = firmware.find('Description').text
+	def __init__(self, model):
+		
+		from urllib import urlencode
+		samsung_parameters = urlencode([
+			('prd_mdl_name', model),
+			('loc', 'global')])
+		from urllib import urlopen
+		samsung_response = urlopen("http://www.samsungimaging.com/common/support/firmware/downloadUrlList.do?%s" % samsung_parameters)
+		
+		import defusedxml
+		from defusedxml.ElementTree import parse
+		firmware = parse(samsung_response).getroot()
+		self.version = firmware.find('FWVersion').text
+		self.url = firmware.find('DownloadURL').text
+		self.changelog = firmware.find('Description').text
 
 def app(environ, start_response):
-    
-    data = '<html><body>'
-    
-    data += """<script>
+	
+	body = """<html><head><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -43,28 +62,48 @@ def app(environ, start_response):
   ga('create', 'UA-55369806-1', 'auto');
   ga('send', 'pageview');
 
-</script>"""
-    
-    t = iLauncher()
-    data += 'The current version of iLauncher is <a href="' + t.url + '">' + t.version + '</a> released on ' + t.date + '.<hr>'
-    
-    product_models = [
-    'SAMSUNG NX300',
-    'SAMSUNG NX2000',
-    'SAMSUNG NX300M',
-    'SAMSUNG NX30',
-    'SAMSUNG NX3000'
-    ]
-    
-    for model in product_models:
-	t = CameraFirmware(model)
-	data += '<p>The current firmware version of '+ model + ' is <a href="' + t.url + '">' + t.version + '</a>:<pre>' + t.changelog + '</pre></p><hr>'
-    
-    data += '</body></html>'
-    
-    start_response('200 OK', [
-	('Content-Type', 'text/html'),
-	('Content-Length', str(len(data)))
-	])
-    
-    return iter([data])
+</script></head><body>"""
+	
+	if environ['PATH_INFO'] == '/check':
+		
+		# check route
+		
+		from cgi import parse_qs, escape;
+		parameters = parse_qs(environ['QUERY_STRING'])
+		product = escape(parameters.get('product', [''])[0])
+		
+		t = SamsungFirmware(product)
+		if (t.version is None) or (t.url is None) or (t.changelog is None):
+			body += """<p>No firmware file available.</p>"""
+		else:
+			body += """<p>The current firmware version is <a href=\"""" + t.url + """\">""" + t.version + """</a>.<pre>""" + t.changelog + """</pre></p>"""
+		del t
+		
+		body += """<p><a href=\"/\">Back</a></p>"""
+		
+		# end check route
+		
+	else:
+		
+		# default route
+		
+		t = iLauncher()
+#		if (t.version is None) or (t.url is None) or (t.date is None):
+		body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date) + """, but the good news is that you don't need to use it anymore.</p>"""
+		del t
+		
+		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\" required><optgroup label=\"NX Cameras\">"""
+		for product, model in nxCameras.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body += """</optgroup><optgroup label=\"NX Lenses\">"""
+		for product, model in nxLenses.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body +="""</optgroup></select><input type=\"submit\" value=\"Check\"></form></p>"""
+		
+		# end default route
+	
+	body += """</body></html>"""
+	
+	body = body.encode('utf-8')
+	start_response('200 OK', [('Content-Type', 'text/html; charset=utf-8'), ('Content-Length', str(len(body)))])
+	return [body]
