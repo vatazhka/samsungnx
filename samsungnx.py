@@ -7,17 +7,24 @@ nxCameras = {
 
 nxLenses = {
 	'XL1302': '10mm fisheye',
+	'XL1102': '16mm',
 	'XL1016': '20mm',
 	'XL1012': '30mm',
+#	'': '45mm',
+	'XL1202': '45mm 2D/3D',
+#	'': '60mm macro',
 	'XL1103': '85mm',
+	'XL1203': '12-24mm',
+	'XL1301': '16-50mm S',
+	'XL1401': '16-50mm PZ',
 	'XL1013': '18-55mm-I',
 	'XL1013i': '18-55mm-II_iFn',
 	'XL1205': '18-55mm-III_iFn',
-	'XL1014': '50-200mm-I',
-	'XL1014i': '50-200mm-II_iFn',
 	'XL1015': '20-50mm-I',
 	'XL1206': '20-50mm-II',
-	'XL1017': '18-200mm'}
+	'XL1017': '18-200mm',
+	'XL1014': '50-200mm-I',
+	'XL1014i': '50-200mm-II_iFn'}
 
 class iLauncher:
 	
