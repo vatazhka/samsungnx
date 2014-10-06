@@ -71,6 +71,8 @@ def app(environ, start_response):
 
 </script></head><body>"""
 	
+	body += """<h1>Is your Samsung NX camera and lens up-to-date?</h1>"""
+	
 	if environ['PATH_INFO'] == '/check':
 		
 		# check route
@@ -81,9 +83,13 @@ def app(environ, start_response):
 		
 		t = SamsungFirmware(product)
 		if (t.version is None) or (t.url is None) or (t.changelog is None):
-			body += """<p>No firmware file available.</p>"""
+			body += """<p>No firmware file was available at this time. Please try again later - there's nothing I can do about it!</p>"""
 		else:
-			body += """<p>The current firmware version is <a href=\"""" + t.url + """\">""" + t.version + """</a>.<pre>""" + t.changelog + """</pre></p>"""
+			body += """<p>The current firmware version is <a href=\"""" + t.url + """\">""" + t.version + """</a>. """
+			body += """Please download this file, unzip it and place the resulting BIN file in the topmost folder of your memory card.</p>"""
+			body += """<p>Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
+			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>"""
+			body += """<p><pre>""" + t.changelog + """</pre></p>"""
 		del t
 		
 		body += """<p><a href=\"/\">Back</a></p>"""
@@ -96,7 +102,8 @@ def app(environ, start_response):
 		
 		t = iLauncher()
 #		if (t.version is None) or (t.url is None) or (t.date is None):
-		body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date) + """, but the good news is that you don't need to use it anymore.</p>"""
+		body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date)
+		body += """, but the good news is that you don't need to use it anymore.</p>"""
 		del t
 		
 		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\" required><optgroup label=\"NX Cameras\">"""
