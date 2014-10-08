@@ -3,7 +3,9 @@ nxCameras = {
 	'SAMSUNG NX2000': 'NX2000',
 	'SAMSUNG NX300M': 'NX300M',
 	'SAMSUNG NX30': 'NX30',
-	'SAMSUNG NX3000': 'NX3000'}
+	'SAMSUNG NX3000': 'NX3000',
+	'SAMSUNG NX1': 'NX1',
+}
 
 nxLenses = {
 	'XL1302': '10mm fisheye',
@@ -24,7 +26,9 @@ nxLenses = {
 	'XL1206': '20-50mm-II',
 	'XL1017': '18-200mm',
 	'XL1014': '50-200mm-I',
-	'XL1014i': '50-200mm-II_iFn'}
+	'XL1014i': '50-200mm-II_iFn',
+#	'': '50-200mm-III_iFn',
+}
 
 class iLauncher:
 	
@@ -83,9 +87,9 @@ def app(environ, start_response):
 		
 		t = SamsungFirmware(product)
 		if (t.version is None) or (t.url is None) or (t.changelog is None):
-			body += """<p>No firmware file was available at this time. Please try again later - there's nothing I can do about it!</p>"""
+			body += """<p>No firmware file is available at this time.  There's nothing I can do about it, please try again later.</p>"""
 		else:
-			body += """<p>The current firmware version is <a href=\"""" + t.url + """\">""" + t.version + """</a>. """
+			body += """<p>The current firmware version is <a href=\"""" + t.url + """\">""" + t.version + """</a>.  """
 			body += """Please download this file, unzip it and place the resulting BIN file in the topmost folder of your memory card.</p>"""
 			body += """<p>Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>"""
@@ -101,9 +105,9 @@ def app(environ, start_response):
 		# default route
 		
 		t = iLauncher()
-#		if (t.version is None) or (t.url is None) or (t.date is None):
-		body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date)
-		body += """, but the good news is that you don't need to use it anymore.</p>"""
+		if (t.version is not None) or (t.url is not None) or (t.date is not None):
+			body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date)
+			body += """, but the good news is that you don't have to use it anymore.</p>"""
 		del t
 		
 		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\" required><optgroup label=\"NX Cameras\">"""
