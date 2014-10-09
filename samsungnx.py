@@ -27,7 +27,7 @@ nxLenses = {
 	'XL1017': '18-200mm',
 	'XL1014': '50-200mm-I',
 	'XL1014i': '50-200mm-II_iFn',
-#	'': '50-200mm-III_iFn',
+	'XL1014i2': '50-200mm-III_iFn',
 }
 
 class iLauncher:
