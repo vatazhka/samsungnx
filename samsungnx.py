@@ -12,7 +12,7 @@ nxLenses = {
 	'XL1102': '16mm F2.4 Ultra Wide Pancake',
 	'XL1016': '20mm F2.8 Pancake',
 	'XL1012': '30mm F2 Pancake',
-#	'': '45mm F1.8',
+	'XL1201': '45mm F1.8',
 	'XL1202': '45mm F1.8 2D/3D',
 #	'': '60mm F2.8 Macro ED OIS SSA',
 	'XL1103': '85mm F1.4 ED SSA',
