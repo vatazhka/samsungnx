@@ -11,12 +11,12 @@ nxLenses = {
 	'XL1302': '10mm F3.5 Fisheye',
 	'XL1102': '16mm F2.4 Ultra Wide Pancake',
 	'XL1016': '20mm F2.8 Pancake',
-	'XL1012': '30mm F2 Pancake',
+	'XL1012': '30mm F2.0 Pancake',
 	'XL1201': '45mm F1.8',
 	'XL1202': '45mm F1.8 2D/3D',
 #	'': '60mm F2.8 Macro ED OIS SSA',
 	'XL1103': '85mm F1.4 ED SSA',
-	'XL1203': '12-24mm F4-5.6 ED',
+	'XL1203': '12-24mm F4.0-5.6 ED',
 	'XL1301': '16-50mm F2.0-2.8 S ED OIS',
 	'XL1401': '16-50mm F3.5-5.6 Power Zoom ED OIS',
 	'XL1013': '18-55mm F3.5-5.6 OIS',
@@ -25,9 +25,9 @@ nxLenses = {
 	'XL1015': '20-50mm F3.5-5.6 ED',
 	'XL1206': '20-50mm F3.5-5.6 ED II',
 	'XL1017': '18-200mm F3.5-6.3 ED OIS',
-	'XL1014': '50-200mm F4-5.6 OIS ED',
-	'XL1014i': '50-200mm F4-5.6 OIS ED II',
-	'XL1014i2': '50-200mm F4-5.6 OIS ED III',
+	'XL1014': '50-200mm F4.0-5.6 OIS ED',
+	'XL1014i': '50-200mm F4.0-5.6 OIS ED II',
+	'XL1014i2': '50-200mm F4.0-5.6 OIS ED III',
 }
 
 class iLauncher:
