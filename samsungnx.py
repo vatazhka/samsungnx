@@ -1,4 +1,4 @@
-nxCameras = {
+cameras = {
 	'SAMSUNG NX300': 'NX300',
 	'SAMSUNG NX2000': 'NX2000',
 	'SAMSUNG NX300M': 'NX300M',
@@ -7,7 +7,7 @@ nxCameras = {
 	'SAMSUNG NX1': 'NX1',
 }
 
-nxLenses = {
+lenses = {
 	'XL1302': '10mm F3.5 Fisheye',
 	'XL1102': '16mm F2.4 Ultra Wide Pancake',
 	'XL1016': '20mm F2.8 Pancake',
@@ -28,14 +28,15 @@ nxLenses = {
 	'XL1014': '50-200mm F4.0-5.6 OIS ED',
 	'XL1014i': '50-200mm F4.0-5.6 OIS ED II',
 	'XL1014i2': '50-200mm F4.0-5.6 OIS ED III',
+#	'': '50-150mm F2.8 S ED OIS',
 }
 
 class iLauncher:
 	
-	def __init__(self):
+	def __init__(self, platform):
 		
 		from urllib import urlopen
-		samsung_response = urlopen('http://www.samsungimaging.com/customer/data/ilauncher/win/server_version.xml')
+		samsung_response = urlopen("http://www.samsungimaging.com/customer/data/ilauncher/%s/server_version.xml" % platform)
 		
 		import defusedxml
 		from defusedxml.ElementTree import parse
@@ -51,7 +52,8 @@ class SamsungFirmware:
 		from urllib import urlencode
 		samsung_parameters = urlencode([
 			('prd_mdl_name', model),
-			('loc', 'global')])
+			('loc', 'global'),
+		])
 		from urllib import urlopen
 		samsung_response = urlopen("http://www.samsungimaging.com/common/support/firmware/downloadUrlList.do?%s" % samsung_parameters)
 		
@@ -64,7 +66,8 @@ class SamsungFirmware:
 
 def app(environ, start_response):
 	
-	body = """<html><head><script>
+	body = """<html><head>
+<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -73,7 +76,46 @@ def app(environ, start_response):
   ga('create', 'UA-55369806-1', 'auto');
   ga('send', 'pageview');
 
-</script></head><body>"""
+</script>
+<style media="screen" type="text/css">
+* {
+	font-size: 12pt;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 150%;
+	text-align: center;
+}
+
+body {
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;
+	margin-left: 12.5%;
+	margin-right: 12.5%;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 250%;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 150%;
+	font-weight: normal;
+}
+
+pre {
+	margin-left: 25%;
+	margin-right: 25%;
+	overflow: auto;
+	white-space: pre-wrap;
+	font-size: 75%;
+	text-align: left;
+}
+</style>
+</head><body>"""
 	
 	body += """<h1>Is your Samsung NX camera and lens up-to-date?</h1>"""
 	
@@ -87,16 +129,19 @@ def app(environ, start_response):
 		
 		t = SamsungFirmware(product)
 		if (t.version is None) or (t.url is None) or (t.changelog is None):
-			body += """<p>No firmware file is available at this time.  There's nothing I can do about it, please try again later.</p>"""
+			body += """<h2>No firmware file is available at this time.</h2>"""
+			body += """<p>There's nothing I can do about it, please try again later.</p>"""
 		else:
-			body += """<p>The current firmware version is <a href=\"""" + t.url + """\">""" + t.version + """</a>.  """
-			body += """Please download this file, unzip it and place the resulting BIN file in the topmost folder of your memory card.</p>"""
-			body += """<p>Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
+			body += """<h2>The current firmware version is """ + t.version + """.</h2>"""
+			body += """<p>Manual upgrade is very easy to perform! First, download <a href=\"""" + t.url + """\">this</a> file. """
+			body += """Unzip it and place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
+			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>"""
-			body += """<p><pre>""" + t.changelog + """</pre></p>"""
+			body += """<h2>Changelog</h2>"""
+			body += """<pre>""" + t.changelog + """</pre>"""
 		del t
 		
-		body += """<p><a href=\"/\">Back</a></p>"""
+		body += """<p><a href=\"/\">Go back to the product selection page</a></p>"""
 		
 		# end check route
 		
@@ -104,22 +149,27 @@ def app(environ, start_response):
 		
 		# default route
 		
-		t = iLauncher()
+		body += """<h2>Samsung wants you to use the iLauncher software...</h2>"""
+		t = iLauncher('win')
 		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date)
-			body += """, but the good news is that you don't have to use it anymore.</p>"""
+			body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date) + """.</p>"""
+		del t
+		t = iLauncher('mac')
+		if (t.version is not None) or (t.url is not None) or (t.date is not None):
+			body += """<p>The current version of iLauncher for OS X is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date) + """.</p>"""
 		del t
 		
+		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
 		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\" required><optgroup label=\"NX Cameras\">"""
-		for product, model in nxCameras.iteritems():
+		for product, model in cameras.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
 		body += """</optgroup><optgroup label=\"NX Lenses\">"""
-		for product, model in nxLenses.iteritems():
+		for product, model in lenses.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
 		body +="""</optgroup></select><input type=\"submit\" value=\"Check\"></form></p>"""
 		
 		# end default route
-	
+		
 	body += """</body></html>"""
 	
 	body = body.encode('utf-8')
