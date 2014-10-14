@@ -14,7 +14,7 @@ lenses = {
 	'XL1012': '30mm F2.0 Pancake',
 	'XL1201': '45mm F1.8',
 	'XL1202': '45mm F1.8 2D/3D',
-#	'': '60mm F2.8 Macro ED OIS SSA',
+	'XL1101': '60mm F2.8 Macro ED OIS SSA',
 	'XL1103': '85mm F1.4 ED SSA',
 	'XL1203': '12-24mm F4.0-5.6 ED',
 	'XL1301': '16-50mm F2.0-2.8 S ED OIS',
