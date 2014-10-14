@@ -175,7 +175,7 @@ pre {
 		del t
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
-		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\">"""
+		body += """<form action=\"/check\" method=\"get\"><p>Choose a product: <select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for product, model in NX_cameras.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
@@ -188,7 +188,7 @@ pre {
 		body += """</optgroup><optgroup label=\"NX-M Lenses\">"""
 		for product, model in NX_M_lenses.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
-		body +="""</optgroup></select><input type=\"submit\" value=\"Check\"></form></p>"""
+		body +="""</optgroup></select><input type=\"submit\" value=\"Check\"></p></form>"""
 		
 		# end default route
 		
