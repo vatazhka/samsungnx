@@ -32,7 +32,7 @@ NX_lenses = {
 }
 
 NX_M_cameras = {
-	'SAMSUNG NXmini': 'NX mini',
+	'SAMSUNG NXmini': 'NX Mini',
 }
 
 NX_M_lenses = {
@@ -132,7 +132,7 @@ pre {
 </head>
 <body>"""
 	
-	body += """<h1>Is your Samsung NX / NX mini camera and lens up-to-date?</h1>"""
+	body += """<h1>Is your Samsung NX / NX Mini camera and lens up-to-date?</h1>"""
 	
 	if environ['PATH_INFO'] == '/check':
 		
