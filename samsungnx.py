@@ -147,13 +147,13 @@ pre {
 			body += """<h2>No firmware file is available at this time.</h2>"""
 			body += """<p>There's nothing I can do about it, please try again later.</p>"""
 		else:
-			body += """<h2>The current firmware version is """ + t.version + """.</h2>"""
-			body += """<p>Manual upgrade is very easy to perform! First, download <a href=\"""" + t.url + """\">this</a> file. """
+			body += """<h2>The current firmware version is """ + escape(str(t.version)) + """.</h2>"""
+			body += """<p>Manual upgrade is very easy to perform! First, download <a href=\"""" + escape(str(t.url)) + """\">this</a> file. """
 			body += """Unzip it and place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>"""
 			body += """<h2>Changelog</h2>"""
-			body += """<pre>""" + t.changelog + """</pre>"""
+			body += """<pre>""" + escape(str(t.changelog)) + """</pre>"""
 		del t
 		
 		body += """<p><a href=\"/\">Go back to the product selection page</a></p>"""
@@ -167,11 +167,15 @@ pre {
 		body += """<h2>Samsung wants you to use the iLauncher software...</h2>"""
 		t = iLauncher('win')
 		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			body += """<p>The current version of iLauncher for Windows is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date) + """.</p>"""
+			from cgi import escape;
+			body += """<p>The current version of iLauncher for Windows is <a href=\"""" + escape(str(t.url)) + """\">""" + escape(str(t.version)) + """</a>"""
+			body += """ released on """ + escape(str(t.date)) + """.</p>"""
 		del t
 		t = iLauncher('mac')
 		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			body += """<p>The current version of iLauncher for OS X is <a href=\"""" + str(t.url) + """\">""" + str(t.version) + """</a> released on """ + str(t.date) + """.</p>"""
+			from cgi import escape;
+			body += """<p>The current version of iLauncher for OS X is <a href=\"""" + escape(str(t.url)) + """\">""" + escape(str(t.version)) + """</a>"""
+			body += """released on """ + escape(str(t.date)) + """.</p>"""
 		del t
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
