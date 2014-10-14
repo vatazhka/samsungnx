@@ -164,18 +164,17 @@ pre {
 		
 		# default route
 		
+		from cgi import escape;
 		body += """<h2>Samsung wants you to use the iLauncher software...</h2>"""
 		t = iLauncher('win')
 		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			from cgi import escape;
 			body += """<p>The current version of iLauncher for Windows is <a href=\"""" + escape(str(t.url)) + """\">""" + escape(str(t.version)) + """</a>"""
 			body += """ released on """ + escape(str(t.date)) + """.</p>"""
 		del t
 		t = iLauncher('mac')
 		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			from cgi import escape;
 			body += """<p>The current version of iLauncher for OS X is <a href=\"""" + escape(str(t.url)) + """\">""" + escape(str(t.version)) + """</a>"""
-			body += """released on """ + escape(str(t.date)) + """.</p>"""
+			body += """ released on """ + escape(str(t.date)) + """.</p>"""
 		del t
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
