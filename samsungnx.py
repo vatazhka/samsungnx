@@ -76,8 +76,12 @@ class SamsungFirmware:
 
 def app(environ, start_response):
 	
-	body = """<html><head>
-<script>
+	body = """<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">
+<title>Samsung NX / NX Mini firmware check</title>
+<script type="text/javascript">
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -125,7 +129,8 @@ pre {
 	text-align: left;
 }
 </style>
-</head><body>"""
+</head>
+<body>"""
 	
 	body += """<h1>Is your Samsung NX / NX mini camera and lens up-to-date?</h1>"""
 	
@@ -170,7 +175,7 @@ pre {
 		del t
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
-		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\" required>"""
+		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for product, model in NX_cameras.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
@@ -187,7 +192,8 @@ pre {
 		
 		# end default route
 		
-	body += """</body></html>"""
+	body += """</body>
+</html>"""
 	
 	body = body.encode('utf-8')
 	start_response('200 OK', [('Content-Type', 'text/html; charset=utf-8'), ('Content-Length', str(len(body)))])
