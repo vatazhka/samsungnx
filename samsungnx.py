@@ -1,4 +1,4 @@
-cameras = {
+NX_cameras = {
 	'SAMSUNG NX300': 'NX300',
 	'SAMSUNG NX2000': 'NX2000',
 	'SAMSUNG NX300M': 'NX300M',
@@ -7,7 +7,7 @@ cameras = {
 	'SAMSUNG NX1': 'NX1',
 }
 
-lenses = {
+NX_lenses = {
 	'XL1302': '10mm F3.5 Fisheye',
 	'XL1102': '16mm F2.4 Ultra Wide Pancake',
 	'XL1016': '20mm F2.8 Pancake',
@@ -29,6 +29,16 @@ lenses = {
 	'XL1014i': '50-200mm F4.0-5.6 OIS ED II',
 	'XL1014i2': '50-200mm F4.0-5.6 OIS ED III',
 #	'': '50-150mm F2.8 S ED OIS',
+}
+
+NX_M_cameras = {
+	'SAMSUNG NXmini': 'NX mini',
+}
+
+NX_M_lenses = {
+	'XM1403': '9-27mm F3.5-5.6 ED OIS',
+	'XM1404': '9mm F3.5 ED',
+	'XM1405': '17mm F1.8 OIS',
 }
 
 class iLauncher:
@@ -117,7 +127,7 @@ pre {
 </style>
 </head><body>"""
 	
-	body += """<h1>Is your Samsung NX camera and lens up-to-date?</h1>"""
+	body += """<h1>Is your Samsung NX / NX mini camera and lens up-to-date?</h1>"""
 	
 	if environ['PATH_INFO'] == '/check':
 		
@@ -160,11 +170,18 @@ pre {
 		del t
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
-		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\" required><optgroup label=\"NX Cameras\">"""
-		for product, model in cameras.iteritems():
+		body += """<p><form action=\"/check\" method=\"get\">Choose a product: <select name=\"product\" required>"""
+		body += """<optgroup label=\"NX Cameras\">"""
+		for product, model in NX_cameras.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
 		body += """</optgroup><optgroup label=\"NX Lenses\">"""
-		for product, model in lenses.iteritems():
+		for product, model in NX_lenses.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body += """</optgroup><optgroup label=\"NX-M Cameras\">"""
+		for product, model in NX_M_cameras.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body += """</optgroup><optgroup label=\"NX-M Lenses\">"""
+		for product, model in NX_M_lenses.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
 		body +="""</optgroup></select><input type=\"submit\" value=\"Check\"></form></p>"""
 		
