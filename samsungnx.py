@@ -137,7 +137,7 @@ class SamsungDownloads:
 			for download in firmware.findall('downloadFile'):
 				title = download.find('localDownloadFile/NMCTTType').text;
 				description = download.find('localDownloadFile/description').text;
-				if 'Firmware' in title and 'Guide' not in description and 'Lens' not in description:
+				if 'Firmware' in title and 'guide' not in description and 'Lens' not in description:
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text
@@ -146,7 +146,6 @@ class SamsungDownloads:
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text
-					break
 		except:
 			pass
 
