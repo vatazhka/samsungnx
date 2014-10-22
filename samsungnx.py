@@ -16,7 +16,27 @@ NX_www_cameras = {
 }
 
 NX_www_lenses = {
+	'EX-F10ANB': '10mm F3.5 Fisheye',
+	'EX-W16ANB': '16mm F2.4 Ultra Wide Pancake',
+	'EX-W20NB': '20mm F2.8 Pancake',
+	'EX-S30NB': '30mm F2.0 Pancake',
+	'EX-S45ANB': '45mm F1.8',
+	'EX-S45ADB': '45mm F1.8 2D/3D',
+	'EX-M60SB': '60mm F2.8 Macro ED OIS SSA',
+	'EX-T85NB': '85mm F1.4 ED SSA',
+	'EX-W1224ANB': '12-24mm F4.0-5.6 ED',
+	'EX-S1650ASB': '16-50mm F2.0-2.8 S ED OIS',
 	'EX-ZP1650ZABEP': '16-50mm F3.5-5.6 Power Zoom ED OIS',
+	'EX-S1855SB': '18-55mm F3.5-5.6 OIS',
+	'EX-S1855IB': '18-55mm F3.5-5.6 OIS II',
+	'EX-S1855CSB': '18-55mm F3.5-5.6 OIS III',
+	'EX-S2050NB': '20-50mm F3.5-5.6 ED',
+	'EX-S2050BNB': '20-50mm F3.5-5.6 ED II',
+	'EX-L18200MB': '18-200mm F3.5-6.3 ED OIS',
+	'EX-T50200SB': '50-200mm F4.0-5.6 OIS ED',
+	'EX-T50200IB': '50-200mm F4.0-5.6 OIS ED II',
+	'EX-T50200CSB': '50-200mm F4.0-5.6 OIS ED III',
+#	'': '50-150mm F2.8 S ED OIS',
 }
 
 NX_M_www_cameras = {
@@ -214,7 +234,7 @@ select {
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>"""
 			body += """<h2>Changelog</h2>"""
-			body += """<pre>""" + escape(t.changelog.replace('<br>', '\n').encode('utf-8')) + """</pre>"""
+			body += """<pre>""" + t.changelog.encode('utf-8') + """</pre>""" # There's deliberately no quoting! It's not safe!!!
 		except:
 			body += """<h2>No firmware file is available at this time.</h2>"""
 			body += """<p>There's nothing I can do about it, please try again later.</p>"""
