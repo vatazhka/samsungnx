@@ -1,4 +1,35 @@
-NX_cameras = {
+NX_www_cameras = {
+	'EV-NX5ZZZBABGB': 'NX5',
+	'EV-NX10ZZBABGB': 'NX10',
+	'EV-NX11ZZBABGB': 'NX11',
+	'EV-NX100ZBABGB': 'NX100',
+	'EV-NX20ZZBSBGB': 'NX20',
+	'EV-NX200ZBABGB': 'NX200',
+	'EV-NX210ZBSBGB': 'NX210',
+	'EV-NX1000BABGB': 'NX1000',
+	'EV-NX1100BABGB': 'NX1100',
+	'EV-NX2000BABGB': 'NX2000',
+	'EV-NX300ZBATGB': 'NX300',
+	'EV-NX30ZZBZBGB': 'NX30',
+	'EV-NX300MBSTDE': 'NX300M',
+	'EV-NX3000BOHGB': 'NX3000',
+}
+
+NX_www_lenses = {
+	'EX-ZP1650ZABEP': '16-50mm F3.5-5.6 Power Zoom ED OIS',
+}
+
+NX_M_www_cameras = {
+	'EV-NXF1ZZB1IGB': 'NX Mini',
+}
+
+NX_M_www_lenses = {
+	'EX-YZ927ZZASEP': '9-27mm F3.5-5.6 ED OIS',
+	'EX-YN9ZZZZASEP': '9mm F3.5 ED',
+	'EX-YN17ZZZASEP': '17mm F1.8 OIS',
+}
+
+NX_iLauncher_cameras = {
 	'SAMSUNG NX300': 'NX300',
 	'SAMSUNG NX2000': 'NX2000',
 	'SAMSUNG NX300M': 'NX300M',
@@ -7,7 +38,7 @@ NX_cameras = {
 	'SAMSUNG NX1': 'NX1',
 }
 
-NX_lenses = {
+NX_iLauncher_lenses = {
 	'XL1302': '10mm F3.5 Fisheye',
 	'XL1102': '16mm F2.4 Ultra Wide Pancake',
 	'XL1016': '20mm F2.8 Pancake',
@@ -31,11 +62,11 @@ NX_lenses = {
 #	'': '50-150mm F2.8 S ED OIS',
 }
 
-NX_M_cameras = {
+NX_M_iLauncher_cameras = {
 	'SAMSUNG NXmini': 'NX Mini',
 }
 
-NX_M_lenses = {
+NX_M_iLauncher_lenses = {
 	'XM1403': '9-27mm F3.5-5.6 ED OIS',
 	'XM1404': '9mm F3.5 ED',
 	'XM1405': '17mm F1.8 OIS',
@@ -44,35 +75,54 @@ NX_M_lenses = {
 class iLauncher:
 	
 	def __init__(self, platform):
-		
-		from urllib import urlopen
-		samsung_response = urlopen("http://www.samsungimaging.com/customer/data/ilauncher/%s/server_version.xml" % platform)
-		
-		import defusedxml
-		from defusedxml.ElementTree import parse
-		iLauncher = parse(samsung_response).getroot()
-		self.version = iLauncher.find('version').text
-		self.url = iLauncher.find('setupFile/url').text
-		self.date = iLauncher.find('desc').text
+		try:
+			from urllib import urlopen
+			response = urlopen('http://www.samsungimaging.com/customer/data/ilauncher/' + platform + '/server_version.xml')
+			
+			import defusedxml
+			from defusedxml.ElementTree import parse
+			iLauncher = parse(response).getroot()
+			self.version = iLauncher.find('version').text
+			self.url = iLauncher.find('setupFile/url').text
+			self.date = iLauncher.find('desc').text
+		except:
+			pass
 
 class SamsungFirmware:
 	
+	def __init__(self, product):
+		
+		try:
+			from urllib import urlopen
+			response = urlopen('http://www.samsungimaging.com/common/support/firmware/downloadUrlList.do?loc=global&prd_mdl_name=' + product)
+			import defusedxml
+			from defusedxml.ElementTree import parse
+			firmware = parse(response).getroot()
+			self.version = firmware.find('FWVersion').text
+			self.url = firmware.find('DownloadURL').text
+			self.changelog = firmware.find('Description').text
+		except:
+			pass
+
+class SamsungDownloads:
+	
 	def __init__(self, model):
 		
-		from urllib import urlencode
-		samsung_parameters = urlencode([
-			('prd_mdl_name', model),
-			('loc', 'global'),
-		])
-		from urllib import urlopen
-		samsung_response = urlopen("http://www.samsungimaging.com/common/support/firmware/downloadUrlList.do?%s" % samsung_parameters)
-		
-		import defusedxml
-		from defusedxml.ElementTree import parse
-		firmware = parse(samsung_response).getroot()
-		self.version = firmware.find('FWVersion').text
-		self.url = firmware.find('DownloadURL').text
-		self.changelog = firmware.find('Description').text
+		try:
+			from urllib import urlopen
+			response = urlopen('http://www.samsung.com/uk/api/support/download/' + model + '?mType=xml')
+			import defusedxml
+			from defusedxml.ElementTree import parse
+			firmware = parse(response).getroot().find('fmDownloadFileList')
+			for download in firmware.findall('downloadFile'):
+#				if 'Firmware File' in download.find('localDownloadFile/description').text or 'Upgrade File' in download.find('localDownloadFile/description').text:
+				if 'Firmware' in download.find('localDownloadFile/NMCTTType').text:
+					self.url = download.find('downloadUrl').text
+					self.version = download.find('localDownloadFile/CTTVersion').text
+					self.changelog = download.find('localDownloadFile/descFileEng').text
+					break
+		except:
+			pass
 
 def app(environ, start_response):
 	
@@ -120,6 +170,11 @@ h2 {
 	font-weight: normal;
 }
 
+h3 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
 pre {
 	margin-left: 25%;
 	margin-right: 25%;
@@ -127,6 +182,10 @@ pre {
 	white-space: pre-wrap;
 	font-size: 75%;
 	text-align: left;
+}
+
+select {
+	width: 37.5%;
 }
 </style>
 </head>
@@ -141,20 +200,24 @@ pre {
 		from cgi import parse_qs, escape;
 		parameters = parse_qs(environ['QUERY_STRING'])
 		product = escape(parameters.get('product', [''])[0])
+		model = escape(parameters.get('model', [''])[0])
 		
-		t = SamsungFirmware(product)
-		if (t.version is None) or (t.url is None) or (t.changelog is None):
-			body += """<h2>No firmware file is available at this time.</h2>"""
-			body += """<p>There's nothing I can do about it, please try again later.</p>"""
-		else:
+		if len(product) > 0:
+			t = SamsungFirmware(product)
+		elif len(model) > 0:
+			t = SamsungDownloads(model)
+		
+		try:
 			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>"""
 			body += """<p>Manual upgrade is very easy to perform! First, download <a href=\"""" + escape(t.url.encode('utf-8')) + """\">this</a> file. """
 			body += """Unzip it and place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>"""
 			body += """<h2>Changelog</h2>"""
-			body += """<pre>""" + escape(t.changelog.encode('utf-8')) + """</pre>"""
-		del t
+			body += """<pre>""" + escape(t.changelog.replace('<br>', '\n').encode('utf-8')) + """</pre>"""
+		except:
+			body += """<h2>No firmware file is available at this time.</h2>"""
+			body += """<p>There's nothing I can do about it, please try again later.</p>"""
 		
 		body += """<p><a href=\"/\">Go back to the product selection page</a></p>"""
 		
@@ -178,20 +241,51 @@ pre {
 		del t
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
-		body += """<form action=\"/check\" method=\"get\"><p>Choose a product: <select name=\"product\">"""
+		
+		body += """<h3>Primary method</h3>"""
+		body += """<p>This method uses the iLauncher backend.</p>"""
+		
+		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
-		for product, model in NX_cameras.iteritems():
+		for product, model in NX_iLauncher_cameras.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
-		body += """</optgroup><optgroup label=\"NX Lenses\">"""
-		for product, model in NX_lenses.iteritems():
+		body += """</optgroup>"""
+		body += """<optgroup label=\"NX Lenses\">"""
+		for product, model in NX_iLauncher_lenses.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
-		body += """</optgroup><optgroup label=\"NX-M Cameras\">"""
-		for product, model in NX_M_cameras.iteritems():
+		body += """</optgroup>"""
+		body += """<optgroup label=\"NX-M Cameras\">"""
+		for product, model in NX_M_iLauncher_cameras.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
-		body += """</optgroup><optgroup label=\"NX-M Lenses\">"""
-		for product, model in NX_M_lenses.iteritems():
+		body += """</optgroup>"""
+		body += """<optgroup label=\"NX-M Lenses\">"""
+		for product, model in NX_M_iLauncher_lenses.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
-		body +="""</optgroup></select><input type=\"submit\" value=\"Check\"></p></form>"""
+		body += """</optgroup>"""
+		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>"""
+		
+		body += """<h3>Alternative method</h3>"""
+		body += """<p>This method uses the Samsung web page backend.</p>"""
+		
+		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
+		body += """<optgroup label=\"NX Cameras\">"""
+		for product, model in NX_www_cameras.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body += """</optgroup>"""
+		body += """<optgroup label=\"NX Lenses\">"""
+		for product, model in NX_www_lenses.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body += """</optgroup>"""
+		body += """<optgroup label=\"NX-M Cameras\">"""
+		for product, model in NX_M_www_cameras.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body += """</optgroup>"""
+		body += """<optgroup label=\"NX-M Lenses\">"""
+		for product, model in NX_M_www_lenses.iteritems():
+			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		body += """</optgroup>"""
+		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>"""
+
 		
 		# end default route
 		
