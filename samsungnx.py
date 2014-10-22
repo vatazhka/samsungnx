@@ -53,6 +53,7 @@ NX_M_lenses = [
 class iLauncher:
 	
 	def __init__(self, platform):
+		
 		try:
 			from urllib import urlopen
 			response = urlopen('http://www.samsungimaging.com/customer/data/ilauncher/' + platform + '/server_version.xml')
