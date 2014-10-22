@@ -1,96 +1,54 @@
-NX_www_cameras = {
-	'EV-NX10ZZBABGB': 'NX10',
-	'EV-NX5ZZZBABGB': 'NX5',
-	'EV-NX100ZBABGB': 'NX100',
-	'EV-NX11ZZBABGB': 'NX11',
-	'EV-NX200ZBABGB': 'NX200',
-	'EV-NX20ZZBSBGB': 'NX20',
-	'EV-NX210ZBSBGB': 'NX210',
-	'EV-NX1000BABGB': 'NX1000',
-	'EV-NX300ZBATGB': 'NX300',
-	'EV-NX1100BABGB': 'NX1100',
-	'EV-NX2000BABGB': 'NX2000',
-	'EV-NX300MBSTDE': 'NX300M',
-	'EV-NX30ZZBZBGB': 'NX30',
-	'EV-NX3000BOHGB': 'NX3000',
-}
+NX_cameras = [
+	['NX10',	'EV-NX10ZZBABGB',	''],
+	['NX5',		'EV-NX5ZZZBABGB',	''],
+	['NX100',	'EV-NX100ZBABGB',	''],
+	['NX11',	'EV-NX11ZZBABGB',	''],
+	['NX200',	'EV-NX200ZBABGB',	''],
+	['NX20',	'EV-NX20ZZBSBGB',	''],
+	['NX210',	'EV-NX210ZBSBGB',	''],
+	['NX1000',	'EV-NX1000BABGB',	''],
+	['NX300',	'EV-NX300ZBATGB',	'SAMSUNG NX300'],
+	['NX1100',	'EV-NX1100BABGB',	''],
+	['NX2000',	'EV-NX2000BABGB',	'SAMSUNG NX2000'],
+	['NX300M',	'EV-NX300MBSTDE',	'SAMSUNG NX300M'],
+	['NX30',	'EV-NX30ZZBZBGB',	'SAMSUNG NX30'],
+	['NX3000',	'EV-NX3000BOHGB',	'SAMSUNG NX3000'],
+	['NX1',		'',					'SAMSUNG NX1'],
+]
 
-NX_www_lenses = {
-	'EX-F10ANB': '10mm F3.5 Fisheye',
-	'EX-W16ANB': '16mm F2.4 Ultra Wide Pancake',
-	'EX-W20NB': '20mm F2.8 Pancake',
-	'EX-S30NB': '30mm F2.0 Pancake',
-	'EX-S45ANB': '45mm F1.8',
-	'EX-S45ADB': '45mm F1.8 2D/3D',
-	'EX-M60SB': '60mm F2.8 Macro ED OIS SSA',
-	'EX-T85NB': '85mm F1.4 ED SSA',
-	'EX-W1224ANB': '12-24mm F4.0-5.6 ED',
-	'EX-S1650ASB': '16-50mm F2.0-2.8 S ED OIS',
-	'EX-ZP1650ZABEP': '16-50mm F3.5-5.6 Power Zoom ED OIS',
-	'EX-S1855SB': '18-55mm F3.5-5.6 OIS',
-	'EX-S1855IB': '18-55mm F3.5-5.6 OIS II',
-	'EX-S1855CSB': '18-55mm F3.5-5.6 OIS III',
-	'EX-S2050NB': '20-50mm F3.5-5.6 ED',
-	'EX-S2050BNB': '20-50mm F3.5-5.6 ED II',
-	'EX-L18200MB': '18-200mm F3.5-6.3 ED OIS',
-	'EX-T50200SB': '50-200mm F4.0-5.6 OIS ED',
-	'EX-T50200IB': '50-200mm F4.0-5.6 OIS ED II',
-	'EX-T50200CSB': '50-200mm F4.0-5.6 OIS ED III',
-#	'': '50-150mm F2.8 S ED OIS',
-}
+NX_lenses = [
+	['10mm F3.5 Fisheye',					'EX-F10ANB',		'XL1302'],
+	['16mm F2.4 Ultra Wide Pancake',		'EX-W16ANB',		'XL1102'],
+	['20mm F2.8 Pancake',					'EX-W20NB',			'XL1016'],
+	['30mm F2.0 Pancake',					'EX-S30NB',			'XL1012'],
+	['45mm F1.8',							'EX-S45ANB',		'XL1201'],
+	['45mm F1.8 2D/3D',						'EX-S45ADB',		'XL1202'],
+	['60mm F2.8 Macro ED OIS SSA',			'EX-M60SB',			'XL1101'],
+	['85mm F1.4 ED SSA',					'EX-T85NB',			'XL1103'],
+	['12-24mm F4.0-5.6 ED',					'EX-W1224ANB',		'XL1203'],
+	['16-50mm F2.0-2.8 S ED OIS',			'EX-S1650ASB',		'XL1301'],
+	['16-50mm F3.5-5.6 Power Zoom ED OIS',	'EX-ZP1650ZABEP',	'XL1401'],
+	['18-55mm F3.5-5.6 OIS',				'EX-S1855SB',		'XL1013'],
+	['18-55mm F3.5-5.6 OIS II',				'EX-S1855IB',		'XL1013i'],
+	['18-55mm F3.5-5.6 OIS III',			'EX-S1855CSB',		'XL1205'],
+	['20-50mm F3.5-5.6 ED',					'EX-S2050NB',		'XL1015'],
+	['20-50mm F3.5-5.6 ED II',				'EX-S2050BNB',		'XL1206'],
+	['18-200mm F3.5-6.3 ED OIS',			'EX-L18200MB',		'XL1017'],
+	['50-200mm F4.0-5.6 OIS ED',			'EX-T50200SB',		'XL1014'],
+	['50-200mm F4.0-5.6 OIS ED II',			'EX-T50200IB',		'XL1014i'],
+	['50-200mm F4.0-5.6 OIS ED III',		'EX-T50200CSB',		'XL1014i2'],
+#	['50-150mm F2.8 S ED OIS',				'',					''],
+]
 
-NX_M_www_cameras = {
-	'EV-NXF1ZZB1IGB': 'NX Mini',
-}
+NX_M_cameras = [
+	['NX Mini',	'EV-NXF1ZZB1IGB',	'SAMSUNG NXmini'],
+]
 
-NX_M_www_lenses = {
-	'EX-YZ927ZZASEP': '9-27mm F3.5-5.6 ED OIS',
-	'EX-YN9ZZZZASEP': '9mm F3.5 ED',
-	'EX-YN17ZZZASEP': '17mm F1.8 OIS',
-}
-
-NX_iLauncher_cameras = {
-	'SAMSUNG NX300': 'NX300',
-	'SAMSUNG NX2000': 'NX2000',
-	'SAMSUNG NX300M': 'NX300M',
-	'SAMSUNG NX30': 'NX30',
-	'SAMSUNG NX3000': 'NX3000',
-	'SAMSUNG NX1': 'NX1',
-}
-
-NX_iLauncher_lenses = {
-	'XL1302': '10mm F3.5 Fisheye',
-	'XL1102': '16mm F2.4 Ultra Wide Pancake',
-	'XL1016': '20mm F2.8 Pancake',
-	'XL1012': '30mm F2.0 Pancake',
-	'XL1201': '45mm F1.8',
-	'XL1202': '45mm F1.8 2D/3D',
-	'XL1101': '60mm F2.8 Macro ED OIS SSA',
-	'XL1103': '85mm F1.4 ED SSA',
-	'XL1203': '12-24mm F4.0-5.6 ED',
-	'XL1301': '16-50mm F2.0-2.8 S ED OIS',
-	'XL1401': '16-50mm F3.5-5.6 Power Zoom ED OIS',
-	'XL1013': '18-55mm F3.5-5.6 OIS',
-	'XL1013i': '18-55mm F3.5-5.6 OIS II',
-	'XL1205': '18-55mm F3.5-5.6 OIS III',
-	'XL1015': '20-50mm F3.5-5.6 ED',
-	'XL1206': '20-50mm F3.5-5.6 ED II',
-	'XL1017': '18-200mm F3.5-6.3 ED OIS',
-	'XL1014': '50-200mm F4.0-5.6 OIS ED',
-	'XL1014i': '50-200mm F4.0-5.6 OIS ED II',
-	'XL1014i2': '50-200mm F4.0-5.6 OIS ED III',
-#	'': '50-150mm F2.8 S ED OIS',
-}
-
-NX_M_iLauncher_cameras = {
-	'SAMSUNG NXmini': 'NX Mini',
-}
-
-NX_M_iLauncher_lenses = {
-	'XM1403': '9-27mm F3.5-5.6 ED OIS',
-	'XM1404': '9mm F3.5 ED',
-	'XM1405': '17mm F1.8 OIS',
-}
+NX_M_lenses = [
+	['9mm F3.5 ED',				'EX-YN9ZZZZASEP',	'XM1404'],
+	['17mm F1.8 OIS',			'EX-YN17ZZZASEP',	'XM1405'],
+	['9-27mm F3.5-5.6 ED OIS',	'EX-YZ927ZZASEP',	'XM1403'],
+]
 
 class iLauncher:
 	
@@ -279,20 +237,24 @@ select {
 		
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
-		for product, model in NX_iLauncher_cameras.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_cameras:
+			if len(i[2]) > 0:
+				body += """<option value=\"""" + i[2] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """<optgroup label=\"NX Lenses\">"""
-		for product, model in NX_iLauncher_lenses.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_lenses:
+			if len(i[2]) > 0:
+				body += """<option value=\"""" + i[2] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """<optgroup label=\"NX-M Cameras\">"""
-		for product, model in NX_M_iLauncher_cameras.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_M_cameras:
+			if len(i[2]) > 0:
+				body += """<option value=\"""" + i[2] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """<optgroup label=\"NX-M Lenses\">"""
-		for product, model in NX_M_iLauncher_lenses.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_M_lenses:
+			if len(i[2]) > 0:
+				body += """<option value=\"""" + i[2] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
@@ -301,20 +263,24 @@ select {
 		
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
-		for product, model in NX_www_cameras.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_cameras:
+			if len(i[1]) > 0:
+				body += """<option value=\"""" + i[1] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """<optgroup label=\"NX Lenses\">"""
-		for product, model in NX_www_lenses.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_lenses:
+			if len(i[1]) > 0:
+				body += """<option value=\"""" + i[1] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """<optgroup label=\"NX-M Cameras\">"""
-		for product, model in NX_M_www_cameras.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_M_cameras:
+			if len(i[1]) > 0:
+				body += """<option value=\"""" + i[1] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """<optgroup label=\"NX-M Lenses\">"""
-		for product, model in NX_M_www_lenses.iteritems():
-			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
+		for i in NX_M_lenses:
+			if len(i[1]) > 0:
+				body += """<option value=\"""" + i[1] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 
