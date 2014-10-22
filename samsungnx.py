@@ -135,8 +135,7 @@ class SamsungDownloads:
 			from defusedxml.ElementTree import parse
 			firmware = parse(response).getroot().find('fmDownloadFileList')
 			for download in firmware.findall('downloadFile'):
-#				if 'Firmware File' in download.find('localDownloadFile/description').text or 'Upgrade File' in download.find('localDownloadFile/description').text:
-				if 'Firmware' in download.find('localDownloadFile/NMCTTType').text:
+				if 'Firmware' in download.find('localDownloadFile/NMCTTType').text and 'Guide' not in download.find('localDownloadFile/description').text and 'Lens' not in download.find('localDownloadFile/description').text:
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text
