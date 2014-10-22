@@ -1,14 +1,14 @@
 NX_www_cameras = {
-	'EV-NX5ZZZBABGB': 'NX5',
 	'EV-NX10ZZBABGB': 'NX10',
-	'EV-NX11ZZBABGB': 'NX11',
+	'EV-NX5ZZZBABGB': 'NX5',
 	'EV-NX100ZBABGB': 'NX100',
+	'EV-NX11ZZBABGB': 'NX11',
 	'EV-NX200ZBABGB': 'NX200',
-	'EV-NX210ZBSBGB': 'NX210',
 	'EV-NX20ZZBSBGB': 'NX20',
+	'EV-NX210ZBSBGB': 'NX210',
 	'EV-NX1000BABGB': 'NX1000',
-	'EV-NX1100BABGB': 'NX1100',
 	'EV-NX300ZBATGB': 'NX300',
+	'EV-NX1100BABGB': 'NX1100',
 	'EV-NX2000BABGB': 'NX2000',
 	'EV-NX300MBSTDE': 'NX300M',
 	'EV-NX30ZZBZBGB': 'NX30',
@@ -212,9 +212,10 @@ select {
 }
 </style>
 </head>
-<body>"""
+<body>
+"""
 	
-	body += """<h1>Is your Samsung NX / NX Mini camera and lens up-to-date?</h1>"""
+	body += """<h1>Is your Samsung NX / NX Mini camera and lens up-to-date?</h1>\n"""
 	
 	if environ['PATH_INFO'] == '/check':
 		
@@ -231,18 +232,18 @@ select {
 			t = SamsungDownloads(model)
 		
 		try:
-			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>"""
+			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>\n"""
 			body += """<p>Manual upgrade is very easy to perform! First, download <a href=\"""" + escape(t.url.encode('utf-8')) + """\">this</a> file. """
 			body += """Unzip it and place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
-			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>"""
-			body += """<h2>Changelog</h2>"""
-			body += """<pre>""" + t.changelog.encode('utf-8') + """</pre>""" # There's deliberately no quoting! It's not safe!!!
+			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>\n"""
+			body += """<h2>Changelog</h2>\n"""
+			body += """<pre>""" + t.changelog.encode('utf-8') + """</pre>\n""" # There's deliberately no quoting! It's not safe!!!
 		except:
-			body += """<h2>No firmware file is available at this time.</h2>"""
-			body += """<p>There's nothing I can do about it, please try again later.</p>"""
+			body += """<h2>No firmware file is available at this time.</h2>\n"""
+			body += """<p>There's nothing I can do about it, please try again later.</p>\n"""
 		
-		body += """<p><a href=\"/\">Go back to the product selection page</a></p>"""
+		body += """<p><a href=\"/\">Go back to the product selection page</a></p>\n"""
 		
 		# end check route
 		
@@ -251,22 +252,24 @@ select {
 		# default route
 		
 		from cgi import escape;
-		body += """<h2>Samsung wants you to use the iLauncher software...</h2>"""
+		body += """<h2>Samsung wants you to use the iLauncher software...</h2>\n"""
 		t = iLauncher('win')
 		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			body += """<p>The current version of iLauncher for Windows is <a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + escape(t.version.encode('utf-8')) + """</a>"""
-			body += """ released on """ + escape(t.date.encode('utf-8')) + """.</p>"""
+			body += """<p>The current version of iLauncher for Windows is """
+			body += """<a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + escape(t.version.encode('utf-8')) + """</a>"""
+			body += """ released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 		del t
 		t = iLauncher('mac')
 		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			body += """<p>The current version of iLauncher for OS X is <a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + escape(t.version.encode('utf-8')) + """</a>"""
-			body += """ released on """ + escape(t.date.encode('utf-8')) + """.</p>"""
+			body += """<p>The current version of iLauncher for OS X is """
+			body += """<a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + escape(t.version.encode('utf-8')) + """</a>"""
+			body += """ released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 		del t
 		
-		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
+		body += """<h2>... but why not update your camera and/or lens manually?</h2>\n"""
 		
-		body += """<h3>The iLauncher method</h3>"""
-		body += """<p>This method queries the web service which iLauncher and Tizen-based cameras use.</p>"""
+		body += """<h3>The iLauncher method</h3>\n"""
+		body += """<p>This method queries the web service which iLauncher and Tizen-based cameras use.</p>\n"""
 		
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
@@ -285,10 +288,10 @@ select {
 		for product, model in NX_M_iLauncher_lenses.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
 		body += """</optgroup>"""
-		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>"""
+		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
-		body += """<h3>The Samsung web page method</h3>"""
-		body += """<p>This method queries the web service which sits behind the Samsung web page.</p>"""
+		body += """<h3>The Samsung web page method</h3>\n"""
+		body += """<p>This method queries the web service which sits behind the Samsung web page.</p>\n"""
 		
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
@@ -307,7 +310,7 @@ select {
 		for product, model in NX_M_www_lenses.iteritems():
 			body += """<option value=\"""" + product + """\">""" + model + """</option>"""
 		body += """</optgroup>"""
-		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>"""
+		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 
 		
 		# end default route
