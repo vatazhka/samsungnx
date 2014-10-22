@@ -3,15 +3,15 @@ NX_www_cameras = {
 	'EV-NX10ZZBABGB': 'NX10',
 	'EV-NX11ZZBABGB': 'NX11',
 	'EV-NX100ZBABGB': 'NX100',
-	'EV-NX20ZZBSBGB': 'NX20',
 	'EV-NX200ZBABGB': 'NX200',
 	'EV-NX210ZBSBGB': 'NX210',
+	'EV-NX20ZZBSBGB': 'NX20',
 	'EV-NX1000BABGB': 'NX1000',
 	'EV-NX1100BABGB': 'NX1100',
-	'EV-NX2000BABGB': 'NX2000',
 	'EV-NX300ZBATGB': 'NX300',
-	'EV-NX30ZZBZBGB': 'NX30',
+	'EV-NX2000BABGB': 'NX2000',
 	'EV-NX300MBSTDE': 'NX300M',
+	'EV-NX30ZZBZBGB': 'NX30',
 	'EV-NX3000BOHGB': 'NX3000',
 }
 
@@ -164,7 +164,6 @@ def app(environ, start_response):
 * {
 	font-size: 12pt;
 	font-family: Arial, Helvetica, sans-serif;
-	line-height: 150%;
 	text-align: center;
 }
 
@@ -175,12 +174,17 @@ body {
 	margin-right: 12.5%;
 }
 
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
 a {
 	text-decoration: none;
 }
 
 h1 {
-	font-size: 250%;
+	font-size: 200%;
 	font-weight: normal;
 }
 
@@ -190,7 +194,7 @@ h2 {
 }
 
 h3 {
-	font-size: 100%;
+	font-size: 125%;
 	font-weight: normal;
 }
 
@@ -261,8 +265,8 @@ select {
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>"""
 		
-		body += """<h3>Primary method</h3>"""
-		body += """<p>This method uses the iLauncher backend.</p>"""
+		body += """<h3>The iLauncher method</h3>"""
+		body += """<p>This method queries the web service which iLauncher and Tizen-based cameras use.</p>"""
 		
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
@@ -283,8 +287,8 @@ select {
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>"""
 		
-		body += """<h3>Alternative method</h3>"""
-		body += """<p>This method uses the Samsung web page backend.</p>"""
+		body += """<h3>The Samsung web page method</h3>"""
+		body += """<p>This method queries the web service which sits behind the Samsung web page.</p>"""
 		
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
