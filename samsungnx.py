@@ -95,13 +95,14 @@ class SamsungDownloads:
 			firmware = parse(response).getroot().find('fmDownloadFileList')
 			for download in firmware.findall('downloadFile'):
 				title = download.find('localDownloadFile/NMCTTType').text;
+				extension = download.find('fileExt').text
 				description = download.find('localDownloadFile/description').text;
-				if 'Firmware' in title and 'guide' not in description and 'Lens' not in description:
+				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text
 					break
-				elif 'Firmware' in title and 'Lens' in description:
+				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text
@@ -197,7 +198,7 @@ select {
 			t = SamsungDownloads(model)
 		
 		try:
-			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>\n"""
+			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>"""
 			body += """<p>Manual upgrade is very easy to perform! First, download <a href=\"""" + escape(t.url.encode('utf-8')) + """\">this</a> file. """
 			body += """Unzip it and place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
