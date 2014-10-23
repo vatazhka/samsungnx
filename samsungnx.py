@@ -158,8 +158,8 @@ body {
 }
 
 p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 a {
@@ -169,21 +169,29 @@ a {
 h1 {
 	font-size: 200%;
 	font-weight: normal;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 h2 {
 	font-size: 150%;
 	font-weight: normal;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 h3 {
 	font-size: 125%;
 	font-weight: normal;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 pre {
 	margin-left: 25%;
 	margin-right: 25%;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	overflow: auto;
 	white-space: pre-wrap;
 	font-size: 75%;
