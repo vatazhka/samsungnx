@@ -69,8 +69,15 @@ class iLauncher:
 
 class SamsungFirmware:
 	
+	def reset(self):
+		
+		self.version = None
+		self.url = None
+		self.changelog = None
+	
 	def __init__(self, product):
 		
+		self.reset()
 		try:
 			from urllib import urlopen
 			response = urlopen('http://www.samsungimaging.com/common/support/firmware/downloadUrlList.do?loc=global&prd_mdl_name=' + product)
@@ -78,15 +85,25 @@ class SamsungFirmware:
 			from defusedxml.ElementTree import parse
 			firmware = parse(response).getroot()
 			self.version = firmware.find('FWVersion').text
-			self.url = firmware.find('DownloadURL').text
-			self.changelog = firmware.find('Description').text
+			if self.version == '-1':
+				self.reset()
+			else:
+				self.url = firmware.find('DownloadURL').text
+				self.changelog = firmware.find('Description').text
 		except:
-			pass
+			self.reset()
 
 class SamsungDownloads:
 	
+	def reset(self):
+		
+		self.version = None
+		self.url = None
+		self.changelog = None
+	
 	def __init__(self, model):
 		
+		self.reset()
 		try:
 			from urllib import urlopen
 			response = urlopen('http://www.samsung.com/uk/api/support/download/' + model + '?mType=xml')
@@ -107,7 +124,7 @@ class SamsungDownloads:
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text
 		except:
-			pass
+			self.reset()
 
 def app(environ, start_response):
 	
