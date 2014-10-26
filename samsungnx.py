@@ -37,7 +37,7 @@ NX_lenses = [
 	['50-200mm F4.0-5.6 OIS ED',			'EX-T50200SB',		'XL1014'],
 	['50-200mm F4.0-5.6 OIS ED II',			'EX-T50200IB',		'XL1014i'],
 	['50-200mm F4.0-5.6 OIS ED III',		'EX-T50200CSB',		'XL1014i2'],
-#	['50-150mm F2.8 S ED OIS',				'',					''],
+	['50-150mm F2.8 S ED OIS',				'EX-ZS50150ABEP',	''],
 ]
 
 NX_M_cameras = [
