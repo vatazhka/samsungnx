@@ -1,3 +1,8 @@
+Platforms = [
+	['Windows',	'win'],
+	['OS X',	'mac'],
+]
+
 NX_cameras = [
 	['NX10',	'EV-NX10ZZBABGB',	''],
 	['NX5',		'EV-NX5ZZZBABGB',	''],
@@ -50,20 +55,20 @@ NX_M_lenses = [
 	['9-27mm F3.5-5.6 ED OIS',	'EX-YZ927ZZASEP',	'XM1403'],
 ]
 
-class iLauncher:
+class SamsungSoftware:
 	
-	def __init__(self, platform):
+	def __init__(self, software, platform):
 		
 		try:
 			from urllib import urlopen
-			response = urlopen('http://www.samsungimaging.com/customer/data/ilauncher/' + platform + '/server_version.xml')
+			response = urlopen('http://www.samsungimaging.com/customer/data/' + software + '/' + platform + '/server_version.xml')
 			
 			import defusedxml
 			from defusedxml.ElementTree import parse
-			iLauncher = parse(response).getroot()
-			self.version = iLauncher.find('version').text
-			self.url = iLauncher.find('setupFile/url').text
-			self.date = iLauncher.find('desc').text
+			software = parse(response).getroot()
+			self.version = software.find('version').text
+			self.url = software.find('setupFile/url').text
+			self.date = software.find('desc').text
 		except:
 			pass
 
@@ -243,19 +248,13 @@ select {
 		# default route
 		
 		from cgi import escape;
-		body += """<h2>Samsung wants you to use the iLauncher software...</h2>\n"""
-		t = iLauncher('win')
-		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			body += """<p>The current version of iLauncher for Windows is """
-			body += """<a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + escape(t.version.encode('utf-8')) + """</a>"""
-			body += """ released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-		del t
-		t = iLauncher('mac')
-		if (t.version is not None) or (t.url is not None) or (t.date is not None):
-			body += """<p>The current version of iLauncher for OS X is """
-			body += """<a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + escape(t.version.encode('utf-8')) + """</a>"""
-			body += """ released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-		del t
+		body += """<h2>Samsung wants you to use the i-Launcher software...</h2>\n"""
+		for i in Platforms:
+			t = SamsungSoftware('ilauncher', i[1])
+			if (t.version is not None) or (t.url is not None) or (t.date is not None):
+				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">i-Launcher for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
+				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			del t
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>\n"""
 		
@@ -310,7 +309,14 @@ select {
 				body += """<option value=\"""" + i[1] + """\">""" + i[0] + """</option>"""
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
-
+		
+		body += """<h2>By the way, if you insist on using the PC Auto Backup software...</h2>\n"""
+		for i in Platforms:
+			t = SamsungSoftware('autobackup', i[1])
+			if (t.version is not None) or (t.url is not None) or (t.date is not None):
+				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">PC Auto Backup for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
+				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			del t
 		
 		# end default route
 		
