@@ -117,12 +117,12 @@ class SamsungDownloads:
 				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
-					self.changelog = download.find('localDownloadFile/descFileEng').text
+					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n')
 					break
 				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
-					self.changelog = download.find('localDownloadFile/descFileEng').text
+					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n')
 		except:
 			self.reset()
 
@@ -229,7 +229,7 @@ select {
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>\n"""
 			body += """<h2>Changelog</h2>\n"""
-			body += """<pre>""" + t.changelog.encode('utf-8') + """</pre>\n""" # There's deliberately no quoting! It's not safe!!!
+			body += """<pre>""" + escape(t.changelog.encode('utf-8')) + """</pre>\n"""
 		except:
 			body += """<h2>No firmware file is available at this time.</h2>\n"""
 			body += """<p>There's nothing I can do about it, please try again later.</p>\n"""
