@@ -258,9 +258,8 @@ select {
 		
 		body += """<h2>... but why not update your camera and/or lens manually?</h2>\n"""
 		
-		body += """<h3>The iLauncher method</h3>\n"""
-		body += """<p>This method queries the web service which iLauncher and Tizen-based cameras use.</p>\n"""
-		
+		body += """<h3>The i-Launcher method</h3>\n"""
+		body += """<p>This method queries the web service which i-Launcher and Tizen-based cameras use.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
@@ -286,7 +285,6 @@ select {
 		
 		body += """<h3>The Samsung web page method</h3>\n"""
 		body += """<p>This method queries the web service which sits behind the Samsung web page.</p>\n"""
-		
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
