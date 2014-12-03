@@ -122,12 +122,12 @@ class SamsungDownloads:
 				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
-					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n')
+					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;','>').replace('&lt;','<')
 					break
 				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
-					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n')
+					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;','>').replace('&lt;','<')
 		except:
 			self.reset()
 
