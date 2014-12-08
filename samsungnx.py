@@ -30,6 +30,7 @@ NX_lenses = [
 	['45mm F1.8 2D/3D',						'EX-S45ADB',		'XL1202'],
 	['60mm F2.8 Macro ED OIS SSA',			'EX-M60SB',			'XL1101'],
 	['85mm F1.4 ED SSA',					'EX-T85NB',			'XL1103'],
+	['300mm F2.8 S ED OIS',					'',					''],
 	['12-24mm F4.0-5.6 ED',					'EX-W1224ANB',		'XL1203'],
 	['16-50mm F2.0-2.8 S ED OIS',			'EX-S1650ASB',		'XL1301'],
 	['16-50mm F3.5-5.6 Power Zoom ED OIS',	'EX-ZP1650ZABEP',	'XL1401'],
@@ -116,9 +117,9 @@ class SamsungDownloads:
 			from defusedxml.ElementTree import parse
 			firmware = parse(response).getroot().find('fmDownloadFileList')
 			for download in firmware.findall('downloadFile'):
-				title = download.find('localDownloadFile/NMCTTType').text;
+				title = download.find('localDownloadFile/NMCTTType').text
 				extension = download.find('fileExt').text
-				description = download.find('localDownloadFile/description').text;
+				description = download.find('localDownloadFile/description').text
 				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
@@ -217,7 +218,7 @@ select {
 		
 		# check route
 		
-		from cgi import parse_qs, escape;
+		from cgi import parse_qs, escape
 		parameters = parse_qs(environ['QUERY_STRING'])
 		product = escape(parameters.get('product', [''])[0])
 		model = escape(parameters.get('model', [''])[0])
@@ -247,7 +248,7 @@ select {
 		
 		# default route
 		
-		from cgi import escape;
+		from cgi import escape
 		body += """<h2>Samsung wants you to use the i-Launcher software...</h2>\n"""
 		for i in Platforms:
 			t = SamsungSoftware('ilauncher', i[1])
