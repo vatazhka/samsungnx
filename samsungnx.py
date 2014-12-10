@@ -196,6 +196,11 @@ p {
 	margin-bottom: 1em;
 }
 
+p.footer {
+	margin-top: 3em;
+	margin-bottom: 1em;
+}
+
 a {
 	text-decoration: none;
 }
@@ -210,14 +215,14 @@ h1 {
 h2 {
 	font-size: 150%;
 	font-weight: normal;
-	margin-top: 2em;
+	margin-top: 1em;
 	margin-bottom: 1em;
 }
 
 h3 {
 	font-size: 125%;
 	font-weight: normal;
-	margin-top: 2em;
+	margin-top: 1em;
 	margin-bottom: 1em;
 }
 
@@ -271,8 +276,7 @@ select {
 			body += """<h2>No firmware file is available at this time.</h2>\n"""
 			body += """<p>There's nothing I can do about it, please try again later.</p>\n"""
 		
-		body += """<h2>&nbsp;</h2>\n"""
-		body += """<p><a href=\"/\">Go back to the product selection page</a></p>\n"""
+		body += """<p class=\"footer\"><a href=\"/\">Go back to the product selection page</a></p>\n"""
 		
 		# end check route
 		
@@ -301,8 +305,7 @@ select {
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 			del t
 		
-		body += """<h2>&nbsp;</h2>\n"""
-		body += """<p><a href=\"/\">Go back to the main page</a></p>\n"""
+		body += """<p class=\"footer\"><a href=\"/\">Go back to the main page</a></p>\n"""
 		
 		# end software route
 		
@@ -387,8 +390,7 @@ select {
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
-		body += """<h2>&nbsp;</h2>\n"""
-		body += """<p>If you insist on using Samsung software, you can download it <a href=\"/software\">here</a>.<p>\n"""
+		body += """<p class=\"footer\">If you insist on using Samsung software, you can download it <a href=\"/software\">here</a>.<p>\n"""
 		
 		# end default route
 		
