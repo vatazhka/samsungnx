@@ -1,8 +1,3 @@
-Platforms = [
-	['Windows',	'win'],
-	['OS X',	'mac']
-]
-
 NX_cameras = [
 	['NX10', '', 'EV-NX10ZZBABGB', 'EV-NX10ZZAAB'],
 	['NX5', '', 'EV-NX5ZZZBABGB', 'EV-NX5ZZZAAB'],
@@ -215,14 +210,14 @@ h1 {
 h2 {
 	font-size: 150%;
 	font-weight: normal;
-	margin-top: 1em;
+	margin-top: 2em;
 	margin-bottom: 1em;
 }
 
 h3 {
 	font-size: 125%;
 	font-weight: normal;
-	margin-top: 1em;
+	margin-top: 2em;
 	margin-bottom: 1em;
 }
 
@@ -276,16 +271,21 @@ select {
 			body += """<h2>No firmware file is available at this time.</h2>\n"""
 			body += """<p>There's nothing I can do about it, please try again later.</p>\n"""
 		
+		body += """<h2>&nbsp;</h2>\n"""
 		body += """<p><a href=\"/\">Go back to the product selection page</a></p>\n"""
 		
 		# end check route
 		
-	else:
+	elif environ['PATH_INFO'] == '/software':
 		
-		# default route
+		# software route
+		
+		body += """<h2>Download camera software directly from Samsung</h2>\n"""
+		
+		Platforms = [['Windows', 'win'], ['OS X', 'mac']]
 		
 		from cgi import escape
-		body += """<h2>Samsung wants you to use the i-Launcher software...</h2>\n"""
+		body += """<h3>i-Launcher</h2>\n"""
 		for i in Platforms:
 			t = SamsungSoftware('ilauncher', i[1])
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
@@ -293,10 +293,27 @@ select {
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 			del t
 		
-		body += """<h2>... but why not update your camera and/or lens manually?</h2>\n"""
+		body += """<h3>PC Auto Backup</h2>\n"""
+		for i in Platforms:
+			t = SamsungSoftware('autobackup', i[1])
+			if (t.version is not None) or (t.url is not None) or (t.date is not None):
+				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">PC Auto Backup for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
+				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			del t
+		
+		body += """<h2>&nbsp;</h2>\n"""
+		body += """<p><a href=\"/\">Go back to the main page</a></p>\n"""
+		
+		# end software route
+		
+	else:
+		
+		# default route
+		
+		body += """<h2>Choose any of the methods below to find out</h2>\n"""
 		
 		body += """<h3>The i-Launcher method</h3>\n"""
-		body += """<p>This method queries the web service which i-Launcher and Tizen-based cameras use.</p>\n"""
+		body += """<p>This method queries data feed which i-Launcher and Tizen-based cameras use.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
@@ -321,7 +338,7 @@ select {
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
 		body += """<h3>The UK Samsung web page method</h3>\n"""
-		body += """<p>This method queries the web service which sits behind the UK Samsung web page.</p>\n"""
+		body += """<p>This method queries data feed which the UK Samsung web page uses.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
@@ -346,7 +363,7 @@ select {
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
 		body += """<h3>The Korean Samsung web page method</h3>\n"""
-		body += """<p>This method queries the web service which sits behind the Korean Samsung web page.</p>\n"""
+		body += """<p>This method queries data feed which the Korean Samsung web page uses.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"modelKR\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
@@ -370,13 +387,8 @@ select {
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
-		body += """<h2>By the way, if you insist on using the PC Auto Backup software...</h2>\n"""
-		for i in Platforms:
-			t = SamsungSoftware('autobackup', i[1])
-			if (t.version is not None) or (t.url is not None) or (t.date is not None):
-				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">PC Auto Backup for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
-				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-			del t
+		body += """<h2>&nbsp;</h2>\n"""
+		body += """<p>If you insist on using Samsung software, you can download it <a href=\"/software\">here</a>.<p>\n"""
 		
 		# end default route
 		
