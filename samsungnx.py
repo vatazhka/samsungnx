@@ -59,7 +59,6 @@ class SamsungSoftware:
 		try:
 			from urllib import urlopen
 			response = urlopen('http://www.samsungimaging.com/customer/data/' + software + '/' + platform + '/server_version.xml')
-			
 			import defusedxml
 			from defusedxml.ElementTree import parse
 			software = parse(response).getroot()
@@ -113,15 +112,15 @@ class QueryUKWebsite:
 			from defusedxml.ElementTree import parse
 			firmware = parse(response).getroot().find('fmDownloadFileList')
 			for download in firmware.findall('downloadFile'):
-				title = download.find('localDownloadFile/NMCTTType').text
-				extension = download.find('fileExt').text
-				description = download.find('localDownloadFile/description').text
-				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
+				title = download.find('localDownloadFile/NMCTTType').text.lower()
+				extension = download.find('fileExt').text.lower()
+				description = download.find('localDownloadFile/description').text.lower()
+				if ('firmware' in title or 'upgrade' in title) and 'zip' in extension and 'lens' not in description:
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;','>').replace('&lt;','<')
 					break
-				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
+				elif ('firmware' in title or 'upgrade' in title) and 'zip' in extension:
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;','>').replace('&lt;','<')
@@ -145,15 +144,15 @@ class QueryKRWebsite:
 			import json
 			firmware = json.load(response)
 			for download in firmware['model']['downloadFileList']:
-				title = download['localDownloadFile']['NMCTTType']
-				extension = download['fileExt']
-				description = download['localDownloadFile']['description']
-				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
+				title = download['localDownloadFile']['NMCTTType'].lower()
+				extension = download['fileExt'].lower()
+				description = download['localDownloadFile']['description'].lower()
+				if ('firmware' in title or 'upgrade' in title) and 'zip' in extension and 'lens' not in description:
 					self.url = download['downloadUrl']
 					self.version = download['localDownloadFile']['CTTVersion']
 					self.changelog = download['localDownloadFile']['descFileEng']
 					break
-				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
+				elif ('firmware' in title or 'upgrade' in title) and 'zip' in extension:
 					self.url = download['downloadUrl']
 					self.version = download['localDownloadFile']['CTTVersion']
 					self.changelog = download['localDownloadFile']['descFileEng']
@@ -314,6 +313,7 @@ select {
 		# default route
 		
 		body += """<h2>Choose any of the methods below to find out</h2>\n"""
+		body += """<p>The results may differ, but &ndash; in general &ndash; more recent release is better.</p>\n"""
 		
 		body += """<h3>The i-Launcher method</h3>\n"""
 		body += """<p>This method queries data feed which i-Launcher and Tizen-based cameras use.</p>\n"""
