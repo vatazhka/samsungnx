@@ -313,10 +313,10 @@ select {
 		# default route
 		
 		body += """<h2>Try the methods below to find out!</h2>\n"""
-		body += """<p>The results may differ, but &ndash; in general &ndash; more recent release is better.</p>\n"""
+		body += """<p>Sorted in order of preference.  The results may differ between methods.</p>\n"""
 		
 		body += """<h3>The i-Launcher method</h3>\n"""
-		body += """<p>This method queries data feed which i-Launcher and Tizen-based cameras use.  Unfortunately, it does not support older (non-Tizen) camera bodies.</p>\n"""
+		body += """<p>Queries data feed which i-Launcher and Tizen-based cameras use.  Does not support older, non-Tizen-based camera bodies.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
@@ -341,7 +341,7 @@ select {
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
 		body += """<h3>The UK Samsung web page method</h3>\n"""
-		body += """<p>This method queries data feed which the UK Samsung web page uses.</p>\n"""
+		body += """<p>Queries data feed which the UK Samsung web page uses.  Recommended if the i-Launcher method does not support your gear.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
@@ -366,7 +366,7 @@ select {
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
 		body += """<h3>The Korean Samsung web page method</h3>\n"""
-		body += """<p>This method queries data feed which the Korean Samsung web page uses.</p>\n"""
+		body += """<p>Queries data feed which the Korean Samsung web page uses.  Changelogs are in Korean only!</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"modelKR\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
