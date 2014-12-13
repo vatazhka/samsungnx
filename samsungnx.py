@@ -312,11 +312,11 @@ select {
 		
 		# default route
 		
-		body += """<h2>Choose any of the methods below to find out</h2>\n"""
+		body += """<h2>Try the methods below to find out!</h2>\n"""
 		body += """<p>The results may differ, but &ndash; in general &ndash; more recent release is better.</p>\n"""
 		
 		body += """<h3>The i-Launcher method</h3>\n"""
-		body += """<p>This method queries data feed which i-Launcher and Tizen-based cameras use.</p>\n"""
+		body += """<p>This method queries data feed which i-Launcher and Tizen-based cameras use.  Unfortunately, it does not support older (non-Tizen) camera bodies.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
