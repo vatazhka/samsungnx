@@ -1,1 +1,1 @@
-web: gunicorn samsungnx:app --workers $WEB_CONCURRENCY --log-file -
+web: gunicorn samsungnx:app --log-file -
