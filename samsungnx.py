@@ -14,7 +14,11 @@ NX_cameras = [
 	['NX30', 'SAMSUNG NX30', 'EV-NX30ZZBZBGB', 'EV-NX30ZZAGBKR'],
 	['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB', 'EV-NX3000AOIKR'],
 	['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB', 'EV-NX1ZZZAZBKR'],
-	['NX500', 'SAMSUNG NX500', '', '']
+	['NX1 (OTA)', 'SAMSUNG NX1bin', '', ''],
+#	['NX3300', 'SAMSUNG NX3300', '', ''],
+#	['NX3300 (OTA)', 'SAMSUNG NX3300bin', '', ''],
+	['NX500', 'SAMSUNG NX500', '', ''],
+	['NX500 (OTA)', 'SAMSUNG NX500bin', '', '']
 ]
 
 NX_lenses = [
@@ -265,7 +269,7 @@ select {
 		try:
 			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>"""
 			body += """<p>Manual upgrade is very easy to perform! First, download <a href=\"""" + escape(t.url.encode('utf-8')) + """\">this</a> file. """
-			body += """Unzip it and place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
+			body += """If it's a <em>.zip</em> file, unzip it. Then, place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>\n"""
 			body += """<h2>Changelog</h2>\n"""
