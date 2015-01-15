@@ -15,8 +15,8 @@ NX_cameras = [
 	['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB', 'EV-NX3000AOIKR'],
 	['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB', 'EV-NX1ZZZAZBKR'],
 	['NX1 (OTA)', 'SAMSUNG NX1bin', '', ''],
-#	['NX3300', 'SAMSUNG NX3300', '', ''],
-#	['NX3300 (OTA)', 'SAMSUNG NX3300bin', '', ''],
+	['NX3300', 'SAMSUNG NX3300', '', ''],
+	['NX3300 (OTA)', 'SAMSUNG NX3300bin', '', ''],
 	['NX500', 'SAMSUNG NX500', '', ''],
 	['NX500 (OTA)', 'SAMSUNG NX500bin', '', '']
 ]
@@ -203,8 +203,14 @@ p.footer {
 	margin-bottom: 1em;
 }
 
-a {
-	text-decoration: none;
+p.copyright {
+	margin-top: 6em;
+	font-size: 50%;
+	text-align: right;
+}
+
+a.copyright {
+	font-size: 50%;
 }
 
 h1 {
@@ -397,7 +403,7 @@ select {
 		
 		# end default route
 		
-	body += """</body>
+	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a class=\"copyright\" href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p></body>
 </html>"""
 	
 	start_response('200 OK', [('Content-Type', 'text/html; charset=utf-8'), ('Content-Length', str(len(body)))])
