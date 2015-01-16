@@ -220,15 +220,15 @@ p {
 	margin-bottom: 1em;
 }
 
-.footer {
+p.footer {
 	margin-top: 3em;
 	margin-bottom: 3em;
 }
 
-.copyright {
-	margin-top: 6em;
+p.copyright {
+	margin-top: 3em;
 	margin-bottom: 0em;
-	font-size: 75%;
+	font-size: 50%;
 	text-align: right;
 }
 
@@ -401,7 +401,8 @@ select {
 		
 		# end default route
 		
-	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p></body>
+	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p>
+</body>
 </html>"""
 	
 	start_response('200 OK', [('Content-Type', 'text/html; charset=utf-8'), ('Content-Length', str(len(body)))])
