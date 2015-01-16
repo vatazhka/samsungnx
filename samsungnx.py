@@ -181,9 +181,8 @@ def app(environ, start_response):
 </script>
 <style media=\"screen\" type=\"text/css\">
 * {
-	font-size: 12pt;
 	font-family: Arial, Helvetica, sans-serif;
-	text-align: center;
+	text-decoration: none;
 }
 
 body {
@@ -191,26 +190,8 @@ body {
 	margin-bottom: 2.5%;
 	margin-left: 12.5%;
 	margin-right: 12.5%;
-}
-
-p {
-	margin-top: 1em;
-	margin-bottom: 1em;
-}
-
-p.footer {
-	margin-top: 3em;
-	margin-bottom: 1em;
-}
-
-p.copyright {
-	margin-top: 6em;
-	font-size: 50%;
-	text-align: right;
-}
-
-a.copyright {
-	font-size: 50%;
+	font-size: 12pt;
+	text-align: center;
 }
 
 h1 {
@@ -232,6 +213,23 @@ h3 {
 	font-weight: normal;
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+p {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.footer {
+	margin-top: 3em;
+	margin-bottom: 3em;
+}
+
+.copyright {
+	margin-top: 6em;
+	margin-bottom: 0em;
+	font-size: 75%;
+	text-align: right;
 }
 
 pre {
@@ -403,7 +401,7 @@ select {
 		
 		# end default route
 		
-	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a class=\"copyright\" href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p></body>
+	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p></body>
 </html>"""
 	
 	start_response('200 OK', [('Content-Type', 'text/html; charset=utf-8'), ('Content-Length', str(len(body)))])
