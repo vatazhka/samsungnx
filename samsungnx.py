@@ -276,6 +276,7 @@ select {
 			body += """If it's a <em>.zip</em> file, unzip it. Then, place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>\n"""
+			body += """<p>Please also note that the firmware file has been directly provided by Samsung - I do not host any firmware files!</p>\n"""
 			body += """<h2>Changelog</h2>\n"""
 			body += """<pre>""" + escape(t.changelog.encode('utf-8')) + """</pre>\n"""
 		except:
@@ -290,7 +291,8 @@ select {
 		
 		# software route
 		
-		body += """<h2>Download camera software directly from Samsung</h2>\n"""
+		body += """<h2>Download software directly from Samsung</h2>\n"""
+		body += """<p>Please note that the links below have been directly provided by Samsung - I do not host any software downloads!</p>\n"""
 		
 		Platforms = [['Windows', 'win'], ['OS X', 'mac']]
 		
