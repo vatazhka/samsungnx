@@ -169,6 +169,7 @@ def app(environ, start_response):
 <head>
 <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">
 <title>Samsung NX / NX Mini firmware check</title>
+<link rel="icon" type="image/png" href="https://www.samsung.com/global/microsite/SAMSUNGCAMERA/mobile/img/feature/nx_icon.png">
 <script type=\"text/javascript\">
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
