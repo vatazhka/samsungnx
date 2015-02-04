@@ -65,6 +65,7 @@ class SamsungSoftware:
 	
 	def __init__(self, software, platform):
 		
+		self.reset()
 		try:
 			from urllib import urlopen
 			response = urlopen('http://www.samsungimaging.com/customer/data/' + software + '/' + platform + '/server_version.xml')
