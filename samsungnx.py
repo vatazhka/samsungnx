@@ -230,7 +230,6 @@ select {
 		parameters = parse_qs(environ['QUERY_STRING'])
 		product = escape(parameters.get('product', [''])[0])
 		model = escape(parameters.get('model', [''])[0])
-		modelKR = escape(parameters.get('modelKR', [''])[0])
 		
 		if len(product) > 0:
 			t = QueryiLauncher(product)
