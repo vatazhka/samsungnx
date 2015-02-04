@@ -57,6 +57,12 @@ NX_M_lenses = [
 
 class SamsungSoftware:
 	
+	def reset(self):
+		
+		self.version = None
+		self.url = None
+		self.date = None
+	
 	def __init__(self, software, platform):
 		
 		try:
@@ -69,7 +75,7 @@ class SamsungSoftware:
 			self.url = software.find('setupFile/url').text
 			self.date = software.find('desc').text
 		except:
-			pass
+			self.reset()
 
 class QueryiLauncher:
 	
