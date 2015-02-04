@@ -1,58 +1,58 @@
 NX_cameras = [
-	['NX10', '', 'EV-NX10ZZBABGB', 'EV-NX10ZZAAB'],
-	['NX5', '', 'EV-NX5ZZZBABGB', 'EV-NX5ZZZAAB'],
-	['NX100', '', 'EV-NX100ZBABGB', 'EV-NX100ZAAB'],
-	['NX11', '', 'EV-NX11ZZBABGB', 'EV-NX11ZZAAB'],
-	['NX200', '', 'EV-NX200ZBABGB', 'EV-NX200ZAST'],
-	['NX20', '', 'EV-NX20ZZBSBGB', 'EV-NX20ZZAEB'],
-	['NX210', '', 'EV-NX210ZBSBGB', 'EV-NX210ZAST'],
-	['NX1000', '', 'EV-NX1000BABGB', 'EV-NX1000AAB'],
-	['NX300', 'SAMSUNG NX300', 'EV-NX300ZBATGB', 'EV-NX300ZAST'],
-	['NX1100', '', 'EV-NX1100BABGB', 'EV-NX1100AFW'],
-	['NX2000', 'SAMSUNG NX2000', 'EV-NX2000BABGB', 'EV-NX2000AAB'],
-	['NX300M', 'SAMSUNG NX300M', 'EV-NX300MBSTDE', 'EV-NX300MAST'],
-	['NX30', 'SAMSUNG NX30', 'EV-NX30ZZBZBGB', 'EV-NX30ZZAGBKR'],
-	['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB', 'EV-NX3000AOIKR'],
-	['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB', 'EV-NX1ZZZAZBKR'],
-	['NX1 (OTA)', 'SAMSUNG NX1bin', '', ''],
-	['NX3300', 'SAMSUNG NX3300', '', ''],
-	['NX3300 (OTA)', 'SAMSUNG NX3300bin', '', ''],
-	['NX500', 'SAMSUNG NX500', '', ''],
-	['NX500 (OTA)', 'SAMSUNG NX500bin', '', '']
+	['NX10', '', 'EV-NX10ZZBABGB'],
+	['NX5', '', 'EV-NX5ZZZBABGB'],
+	['NX100', '', 'EV-NX100ZBABGB'],
+	['NX11', '', 'EV-NX11ZZBABGB'],
+	['NX200', '', 'EV-NX200ZBABGB'],
+	['NX20', '', 'EV-NX20ZZBSBGB'],
+	['NX210', '', 'EV-NX210ZBSBGB'],
+	['NX1000', '', 'EV-NX1000BABGB'],
+	['NX300', 'SAMSUNG NX300', 'EV-NX300ZBATGB'],
+	['NX1100', '', 'EV-NX1100BABGB'],
+	['NX2000', 'SAMSUNG NX2000', 'EV-NX2000BABGB'],
+	['NX300M', 'SAMSUNG NX300M', 'EV-NX300MBSTDE'],
+	['NX30', 'SAMSUNG NX30', 'EV-NX30ZZBZBGB'],
+	['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB'],
+	['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB'],
+	['NX1 (OTA)', 'SAMSUNG NX1bin', ''],
+	['NX3300', 'SAMSUNG NX3300', ''],
+	['NX3300 (OTA)', 'SAMSUNG NX3300bin', ''],
+	['NX500', 'SAMSUNG NX500', ''],
+	['NX500 (OTA)', 'SAMSUNG NX500bin', '']
 ]
 
 NX_lenses = [
-	['10mm F3.5 Fisheye', 'XL1302', 'EX-F10ANB', 'EX-F10ANB'],
-	['16mm F2.4 Ultra-Wide Pancake', 'XL1102', 'EX-W16ANB', 'EX-W16NB'],
-	['20mm F2.8 Wide Pancake', 'XL1016', 'EX-W20NB', 'EX-W20NB'],
-	['30mm F2.0 Standard Pancake', 'XL1012', 'EX-S30NB', 'EX-S30NB'],
-	['45mm F1.8 Mid-Telephoto', 'XL1201', 'EX-S45ANB', 'EX-S45ANB'],
-	['45mm F1.8 2D/3D Mid-Telephoto', 'XL1202', 'EX-S45ADB', 'EX-S45ADB'],
-	['60mm F2.8 ED OIS SSA Tele Macro', 'XL1101', 'EX-M60SB', 'EX-M60SB'],
-	['85mm F1.4 ED SSA Premium Portrait', 'XL1103', 'EX-T85NB', 'EX-T85NB'],
-	['12-24mm F4.0-5.6 ED Compact Wide Zoom', 'XL1203', 'EX-W1224ANB', 'EX-W1224ANB'],
-	['16-50mm F2.0-2.8 S ED OIS Professional Standard Zoom', 'XL1301', 'EX-S1650ASB', 'EX-S1650ASB'],
-	['16-50mm F3.5-5.6 ED OIS Standard Power Zoom', 'XL1401', 'EX-ZP1650ZABEP', 'EX-ZP1650ZABKR'],
-	['20-50mm F3.5-5.6 ED Compact Standard Zoom', 'XL1015', 'EX-S2050NB', 'EX-S2050NB'],
-	['20-50mm F3.5-5.6 ED II Compact Standard Zoom', 'XL1206', 'EX-S2050BNB', 'EX-S2050BNB'],
-	['18-55mm F3.5-5.6 OIS Standard Zoom', 'XL1013', 'EX-S1855SB', 'EX-S1855SB'],
-	['18-55mm F3.5-5.6 OIS II Standard Zoom', 'XL1013i', 'EX-S1855IB', 'EX-S1855IB'],
-	['18-55mm F3.5-5.6 OIS III Standard Zoom', 'XL1205', 'EX-S1855CSB', 'EX-S1855CSB'],
-	['50-150mm F2.8 S ED OIS Professional Tele Zoom', 'XL1406', 'EX-ZS50150ABEP', 'EX-ZS50150ABKR'],
-	['50-200mm F4.0-5.6 OIS ED Tele Zoom', 'XL1014', 'EX-T50200SB', 'EX-T50200SB'],
-	['50-200mm F4.0-5.6 OIS ED II Tele Zoom', 'XL1014i', 'EX-T50200IB', 'EX-T50200IB'],
-	['50-200mm F4.0-5.6 OIS ED III Tele Zoom', 'XL1014i2', 'EX-T50200CSB', 'EX-T50200CSB'],
-	['18-200mm F3.5-6.3 ED OIS Long Zoom', 'XL1017', 'EX-L18200MB', 'EX-L18200MB']
+	['10mm F3.5 Fisheye', 'XL1302', 'EX-F10ANB'],
+	['16mm F2.4 Ultra-Wide Pancake', 'XL1102', 'EX-W16ANB'],
+	['20mm F2.8 Wide Pancake', 'XL1016', 'EX-W20NB'],
+	['30mm F2.0 Standard Pancake', 'XL1012', 'EX-S30NB'],
+	['45mm F1.8 Mid-Telephoto', 'XL1201', 'EX-S45ANB'],
+	['45mm F1.8 2D/3D Mid-Telephoto', 'XL1202', 'EX-S45ADB'],
+	['60mm F2.8 ED OIS SSA Tele Macro', 'XL1101', 'EX-M60SB'],
+	['85mm F1.4 ED SSA Premium Portrait', 'XL1103', 'EX-T85NB'],
+	['12-24mm F4.0-5.6 ED Compact Wide Zoom', 'XL1203', 'EX-W1224ANB'],
+	['16-50mm F2.0-2.8 S ED OIS Professional Standard Zoom', 'XL1301', 'EX-S1650ASB'],
+	['16-50mm F3.5-5.6 ED OIS Standard Power Zoom', 'XL1401', 'EX-ZP1650ZABEP'],
+	['20-50mm F3.5-5.6 ED Compact Standard Zoom', 'XL1015', 'EX-S2050NB'],
+	['20-50mm F3.5-5.6 ED II Compact Standard Zoom', 'XL1206', 'EX-S2050BNB'],
+	['18-55mm F3.5-5.6 OIS Standard Zoom', 'XL1013', 'EX-S1855SB'],
+	['18-55mm F3.5-5.6 OIS II Standard Zoom', 'XL1013i', 'EX-S1855IB'],
+	['18-55mm F3.5-5.6 OIS III Standard Zoom', 'XL1205', 'EX-S1855CSB'],
+	['50-150mm F2.8 S ED OIS Professional Tele Zoom', 'XL1406', 'EX-ZS50150ABEP'],
+	['50-200mm F4.0-5.6 OIS ED Tele Zoom', 'XL1014', 'EX-T50200SB'],
+	['50-200mm F4.0-5.6 OIS ED II Tele Zoom', 'XL1014i', 'EX-T50200IB'],
+	['50-200mm F4.0-5.6 OIS ED III Tele Zoom', 'XL1014i2', 'EX-T50200CSB'],
+	['18-200mm F3.5-6.3 ED OIS Long Zoom', 'XL1017', 'EX-L18200MB']
 ]
 
 NX_M_cameras = [
-	['NX Mini', 'SAMSUNG NXmini', 'EV-NXF1ZZB1IGB', 'EV-NXF1ZZA1IKR']
+	['NX Mini', 'SAMSUNG NXmini', 'EV-NXF1ZZB1IGB']
 ]
 
 NX_M_lenses = [
-	['9mm F3.5 ED Wide Prime', 'XM1404', 'EX-YN9ZZZZASEP', 'EX-YN9ZZZZASKR'],
-	['17mm F1.8 OIS Large Aperture Prime', 'XM1405', 'EX-YN17ZZZASEP', 'EX-YN17ZZZASKR'],
-	['9-27mm F3.5-5.6 ED OIS Standard Zoom', 'XM1403', 'EX-YZ927ZZASEP', 'EX-YN927ZZASKR']
+	['9mm F3.5 ED Wide Prime', 'XM1404', 'EX-YN9ZZZZASEP'],
+	['17mm F1.8 OIS Large Aperture Prime', 'XM1405', 'EX-YN17ZZZASEP'],
+	['9-27mm F3.5-5.6 ED OIS Standard Zoom', 'XM1403', 'EX-YZ927ZZASEP']
 ]
 
 class SamsungSoftware:
@@ -127,38 +127,6 @@ class QueryUKWebsite:
 					self.url = download.find('downloadUrl').text
 					self.version = download.find('localDownloadFile/CTTVersion').text
 					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;','>').replace('&lt;','<')
-		except:
-			self.reset()
-
-class QueryKRWebsite:
-	
-	def reset(self):
-		
-		self.version = None
-		self.url = None
-		self.changelog = None
-	
-	def __init__(self, model):
-		
-		self.reset()
-		try:
-			from urllib import urlopen
-			response = urlopen('http://www.samsung.com/sec/support/model/' + model + '-downloads?mType=json', 'MENU_TYPE=FM')
-			import json
-			firmware = json.load(response)
-			for download in firmware['model']['downloadFileList']:
-				title = download['localDownloadFile']['NMCTTType'].lower()
-				extension = download['fileExt'].lower()
-				description = download['localDownloadFile']['description'].lower()
-				if ('firmware' in title or 'upgrade' in title) and 'zip' in extension and 'lens' not in description:
-					self.url = download['downloadUrl']
-					self.version = download['localDownloadFile']['CTTVersion']
-					self.changelog = download['localDownloadFile']['descFileEng']
-					break
-				elif ('firmware' in title or 'upgrade' in title) and 'zip' in extension:
-					self.url = download['downloadUrl']
-					self.version = download['localDownloadFile']['CTTVersion']
-					self.changelog = download['localDownloadFile']['descFileEng']
 		except:
 			self.reset()
 
@@ -268,8 +236,6 @@ select {
 			t = QueryiLauncher(product)
 		elif len(model) > 0:
 			t = QueryUKWebsite(model)
-		elif len(modelKR) > 0:
-			t = QueryKRWebsite(modelKR)
 		
 		try:
 			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>"""
@@ -338,8 +304,8 @@ select {
 		
 		# default route
 		
-		body += """<h2>Try the methods below to find out!</h2>\n"""
-		body += """<p>Sorted in order of preference.  The results may differ between methods.</p>\n"""
+		body += """<h2>Firmware updates</h2>\n"""
+		body += """<p>The methods appear in order of preference.  The results may differ between methods.</p>\n"""
 		
 		body += """<h3>The i-Launcher method</h3>\n"""
 		body += """<p>Queries data feed which i-Launcher and Tizen-based cameras use.  Does not support older, non-Tizen-based camera bodies.</p>\n"""
@@ -391,32 +357,8 @@ select {
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
-		body += """<h3>The Korean Samsung web page method</h3>\n"""
-		body += """<p>Queries data feed which the Korean Samsung web page uses.  Changelogs are in Korean only!</p>\n"""
-		body += """<form action=\"/check\" method=\"get\"><p><select name=\"modelKR\">"""
-		body += """<optgroup label=\"NX Cameras\">"""
-		for i in NX_cameras:
-			if len(i[3]) > 0:
-				body += """<option value=\"""" + i[3] + """\">""" + i[0] + """</option>"""
-		body += """</optgroup>"""
-		body += """<optgroup label=\"NX Lenses\">"""
-		for i in NX_lenses:
-			if len(i[3]) > 0:
-				body += """<option value=\"""" + i[3] + """\">""" + i[0] + """</option>"""
-		body += """</optgroup>"""
-		body += """<optgroup label=\"NX-M Cameras\">"""
-		for i in NX_M_cameras:
-			if len(i[3]) > 0:
-				body += """<option value=\"""" + i[3] + """\">""" + i[0] + """</option>"""
-		body += """</optgroup>"""
-		body += """<optgroup label=\"NX-M Lenses\">"""
-		for i in NX_M_lenses:
-			if len(i[3]) > 0:
-				body += """<option value=\"""" + i[3] + """\">""" + i[0] + """</option>"""
-		body += """</optgroup>"""
-		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
-		
-		body += """<p class=\"footer\">If you insist on using Samsung software, you can download it <a href=\"/software\">here</a>.<p>\n"""
+		body += """<h2>Software updates</h2>\n"""
+		body += """<p>If you insist on using Samsung software, you can download it <a href=\"/software\">here</a>.<p>\n"""
 		
 		# end default route
 		
