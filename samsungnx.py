@@ -14,11 +14,8 @@ NX_cameras = [
 	['NX30', 'SAMSUNG NX30', 'EV-NX30ZZBZBGB'],
 	['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB'],
 	['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB'],
-	['NX1 (OTA)', 'SAMSUNG NX1bin', ''],
-	['NX3300', 'SAMSUNG NX3300', ''],
-	['NX3300 (OTA)', 'SAMSUNG NX3300bin', ''],
 	['NX500', 'SAMSUNG NX500', ''],
-	['NX500 (OTA)', 'SAMSUNG NX500bin', '']
+	['NX3300', 'SAMSUNG NX3300', '']
 ]
 
 NX_lenses = [
