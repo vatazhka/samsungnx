@@ -270,7 +270,7 @@ select {
 		Platforms = [['Windows', 'win'], ['OS X', 'mac']]
 		
 		from cgi import escape
-		body += """<h3>i-Launcher</h2>\n"""
+		body += """<h3>i-Launcher</h3>\n"""
 		for i in Platforms:
 			t = SamsungSoftware('ilauncher', i[1])
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
@@ -278,7 +278,7 @@ select {
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 			del t
 		
-		body += """<h3>DNG Converter</h2>\n"""
+		body += """<h3>DNG Converter</h3>\n"""
 		for i in Platforms:
 			t = SamsungSoftware('dngconverter', i[1])
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
@@ -286,7 +286,7 @@ select {
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 			del t
 		
-		body += """<h3>Movie Converter</h2>\n"""
+		body += """<h3>Movie Converter</h3>\n"""
 		for i in Platforms:
 			t = SamsungSoftware('movieconverter', i[1])
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
@@ -294,11 +294,19 @@ select {
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 			del t
 		
-		body += """<h3>PC Auto Backup</h2>\n"""
+		body += """<h3>PC Auto Backup</h3>\n"""
 		for i in Platforms:
 			t = SamsungSoftware('autobackup', i[1])
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
 				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">PC Auto Backup for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
+				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			del t
+		
+		body += """<h3>Remote Studio</h3>\n"""
+		for i in Platforms:
+			t = SamsungSoftware('remotestudio', i[1])
+			if (t.version is not None) or (t.url is not None) or (t.date is not None):
+				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">Remote Studio for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 			del t
 		
