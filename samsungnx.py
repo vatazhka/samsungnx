@@ -14,7 +14,9 @@ NX_cameras = [
 	['NX30', 'SAMSUNG NX30', 'EV-NX30ZZBZBGB'],
 	['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB'],
 	['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB'],
+	['NX1 (OTA)', 'SAMSUNG NX1bin', ''],
 	['NX500', 'SAMSUNG NX500', ''],
+	['NX500 (OTA)', 'SAMSUNG NX500bin', ''],
 	['NX3300', 'SAMSUNG NX3300', '']
 ]
 
@@ -74,7 +76,7 @@ class SamsungSoftware:
 			self.date = software.find('desc').text
 			from urlparse import urlparse
 			url = urlparse(self.url)
-			if (url.scheme is not 'http') and (url.scheme is not 'https'):
+			if (url.scheme != 'http') and (url.scheme != 'https'):
 				self.reset()
 		except:
 			self.reset()
@@ -277,6 +279,8 @@ select {
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
 				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">i-Launcher for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			else:
+				body += """<p>i-Launcher for """ + i[0] + """ was not released.</p>\n"""
 			del t
 		
 		body += """<h3>DNG Converter</h3>\n"""
@@ -285,6 +289,8 @@ select {
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
 				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">DNG Converter for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			else:
+				body += """<p>DNG Converter for """ + i[0] + """ was not released.</p>\n"""
 			del t
 		
 		body += """<h3>Movie Converter</h3>\n"""
@@ -293,6 +299,8 @@ select {
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
 				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">Movie Converter for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			else:
+				body += """<p>Movie Converter for """ + i[0] + """ was not released.</p>\n"""
 			del t
 		
 		body += """<h3>PC Auto Backup</h3>\n"""
@@ -301,6 +309,8 @@ select {
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
 				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">PC Auto Backup for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			else:
+				body += """<p>PC Auto Backup for """ + i[0] + """ was not released.</p>\n"""
 			del t
 		
 		body += """<h3>Remote Studio</h3>\n"""
@@ -309,6 +319,8 @@ select {
 			if (t.version is not None) or (t.url is not None) or (t.date is not None):
 				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">Remote Studio for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
 				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+			else:
+				body += """<p>Remote Studio for """ + i[0] + """ was not released.</p>\n"""
 			del t
 		
 		body += """<p class=\"footer\"><a href=\"/\">Go back to the main page</a></p>\n"""
