@@ -205,7 +205,7 @@ p.footer {
 p.copyright {
 	margin-top: 3em;
 	margin-bottom: 0em;
-	font-size: 50%;
+	font-size: 75%;
 	text-align: right;
 }
 
