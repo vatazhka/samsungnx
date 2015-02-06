@@ -1,3 +1,4 @@
 defusedxml==0.4.1
 gunicorn==19.2.1
 urllib3==1.10
+urlparse3==1.0.3

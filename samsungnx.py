@@ -72,6 +72,10 @@ class SamsungSoftware:
 			self.version = software.find('version').text
 			self.url = software.find('setupFile/url').text
 			self.date = software.find('desc').text
+			from urlparse import urlparse
+			url = urlparse(self.url)
+			if (url.scheme is not 'http') and (url.scheme is not 'https'):
+				self.reset()
 		except:
 			self.reset()
 
