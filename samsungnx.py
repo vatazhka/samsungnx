@@ -1,57 +1,3 @@
-NX_cameras = [
-	['NX10', '', 'EV-NX10ZZBABGB'],
-	['NX5', '', 'EV-NX5ZZZBABGB'],
-	['NX100', '', 'EV-NX100ZBABGB'],
-	['NX11', '', 'EV-NX11ZZBABGB'],
-	['NX200', '', 'EV-NX200ZBABGB'],
-	['NX20', '', 'EV-NX20ZZBSBGB'],
-	['NX210', '', 'EV-NX210ZBSBGB'],
-	['NX1000', '', 'EV-NX1000BABGB'],
-	['NX300', 'SAMSUNG NX300', 'EV-NX300ZBATGB'],
-	['NX1100', '', 'EV-NX1100BABGB'],
-	['NX2000', 'SAMSUNG NX2000', 'EV-NX2000BABGB'],
-	['NX300M', 'SAMSUNG NX300M', 'EV-NX300MBSTDE'],
-	['NX30', 'SAMSUNG NX30', 'EV-NX30ZZBZBGB'],
-	['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB'],
-	['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB'],
-	['NX500', 'SAMSUNG NX500', ''],
-	['NX3300', 'SAMSUNG NX3300', '']
-]
-
-NX_lenses = [
-	['10mm F3.5 Fisheye', 'XL1302', 'EX-F10ANB'],
-	['16mm F2.4 Ultra-Wide Pancake', 'XL1102', 'EX-W16ANB'],
-	['20mm F2.8 Wide Pancake', 'XL1016', 'EX-W20NB'],
-	['30mm F2.0 Standard Pancake', 'XL1012', 'EX-S30NB'],
-	['45mm F1.8 Mid-Telephoto', 'XL1201', 'EX-S45ANB'],
-	['45mm F1.8 2D/3D Mid-Telephoto', 'XL1202', 'EX-S45ADB'],
-	['60mm F2.8 ED OIS SSA Tele Macro', 'XL1101', 'EX-M60SB'],
-	['85mm F1.4 ED SSA Premium Portrait', 'XL1103', 'EX-T85NB'],
-	['12-24mm F4.0-5.6 ED Compact Wide Zoom', 'XL1203', 'EX-W1224ANB'],
-	['16-50mm F2.0-2.8 S ED OIS Professional Standard Zoom', 'XL1301', 'EX-S1650ASB'],
-	['16-50mm F3.5-5.6 ED OIS Standard Power Zoom', 'XL1401', 'EX-ZP1650ZABEP'],
-	['20-50mm F3.5-5.6 ED Compact Standard Zoom', 'XL1015', 'EX-S2050NB'],
-	['20-50mm F3.5-5.6 ED II Compact Standard Zoom', 'XL1206', 'EX-S2050BNB'],
-	['18-55mm F3.5-5.6 OIS Standard Zoom', 'XL1013', 'EX-S1855SB'],
-	['18-55mm F3.5-5.6 OIS II Standard Zoom', 'XL1013i', 'EX-S1855IB'],
-	['18-55mm F3.5-5.6 OIS III Standard Zoom', 'XL1205', 'EX-S1855CSB'],
-	['50-150mm F2.8 S ED OIS Professional Tele Zoom', 'XL1406', 'EX-ZS50150ABEP'],
-	['50-200mm F4.0-5.6 OIS ED Tele Zoom', 'XL1014', 'EX-T50200SB'],
-	['50-200mm F4.0-5.6 OIS ED II Tele Zoom', 'XL1014i', 'EX-T50200IB'],
-	['50-200mm F4.0-5.6 OIS ED III Tele Zoom', 'XL1014i2', 'EX-T50200CSB'],
-	['18-200mm F3.5-6.3 ED OIS Long Zoom', 'XL1017', 'EX-L18200MB']
-]
-
-NX_M_cameras = [
-	['NX Mini', 'SAMSUNG NXmini', 'EV-NXF1ZZB1IGB']
-]
-
-NX_M_lenses = [
-	['9mm F3.5 ED Wide Prime', 'XM1404', 'EX-YN9ZZZZASEP'],
-	['17mm F1.8 OIS Large Aperture Prime', 'XM1405', 'EX-YN17ZZZASEP'],
-	['9-27mm F3.5-5.6 ED OIS Standard Zoom', 'XM1403', 'EX-YZ927ZZASEP']
-]
-
 class SamsungSoftware:
 	
 	def reset(self):
@@ -203,10 +149,8 @@ p.footer {
 }
 
 p.copyright {
-	margin-top: 3em;
-	margin-bottom: 0em;
-	font-size: 75%;
-	text-align: right;
+	margin-top: 6em;
+	font-size: 50%;
 }
 
 pre {
@@ -268,58 +212,30 @@ select {
 		body += """<h2>Download software directly from Samsung</h2>\n"""
 		body += """<p>Please note that the links below have been directly provided by Samsung - I do not host any software downloads!</p>\n"""
 		
-		Platforms = [['Windows', 'win'], ['OS X', 'mac']]
+		Software = [
+			['i-Launcher', 'ilauncher'],
+			['DNG Converter', 'dngconverter'],
+			['Movie Converter', 'movieconverter'],
+			['PC Auto Backup', 'autobackup'],
+			['Remote Studio', 'remotestudio']
+		]
+		
+		Platforms = [
+			['Windows', 'win'],
+			['OS X', 'mac']
+		]
 		
 		from cgi import escape
-		body += """<h3>i-Launcher</h3>\n"""
-		for i in Platforms:
-			t = SamsungSoftware('ilauncher', i[1])
-			if (t.version is not None) or (t.url is not None) or (t.date is not None):
-				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">i-Launcher for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
-				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-			else:
-				body += """<p>i-Launcher for """ + i[0] + """ was not released.</p>\n"""
-			del t
-		
-		body += """<h3>DNG Converter</h3>\n"""
-		for i in Platforms:
-			t = SamsungSoftware('dngconverter', i[1])
-			if (t.version is not None) or (t.url is not None) or (t.date is not None):
-				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">DNG Converter for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
-				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-			else:
-				body += """<p>DNG Converter for """ + i[0] + """ was not released.</p>\n"""
-			del t
-		
-		body += """<h3>Movie Converter</h3>\n"""
-		for i in Platforms:
-			t = SamsungSoftware('movieconverter', i[1])
-			if (t.version is not None) or (t.url is not None) or (t.date is not None):
-				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">Movie Converter for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
-				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-			else:
-				body += """<p>Movie Converter for """ + i[0] + """ was not released.</p>\n"""
-			del t
-		
-		body += """<h3>PC Auto Backup</h3>\n"""
-		for i in Platforms:
-			t = SamsungSoftware('autobackup', i[1])
-			if (t.version is not None) or (t.url is not None) or (t.date is not None):
-				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">PC Auto Backup for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
-				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-			else:
-				body += """<p>PC Auto Backup for """ + i[0] + """ was not released.</p>\n"""
-			del t
-		
-		body += """<h3>Remote Studio</h3>\n"""
-		for i in Platforms:
-			t = SamsungSoftware('remotestudio', i[1])
-			if (t.version is not None) or (t.url is not None) or (t.date is not None):
-				body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">Remote Studio for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
-				body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
-			else:
-				body += """<p>Remote Studio for """ + i[0] + """ was not released.</p>\n"""
-			del t
+		for j in Software:
+			body += """<h3>""" + j[0] + """</h3>\n"""
+			for i in Platforms:
+				t = SamsungSoftware(j[1], i[1])
+				if (t.version is not None) or (t.url is not None) or (t.date is not None):
+					body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + j[0] + """ for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
+					body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
+				else:
+					body += """<p>""" + j[0] + """ for """ + i[0] + """ was not released.</p>\n"""
+				del t
 		
 		body += """<p class=\"footer\"><a href=\"/\">Go back to the main page</a></p>\n"""
 		
@@ -331,6 +247,60 @@ select {
 		
 		body += """<h2>Firmware updates</h2>\n"""
 		body += """<p>The methods appear in order of preference.  The results may differ between methods.</p>\n"""
+		
+		NX_cameras = [
+			['NX10', '', 'EV-NX10ZZBABGB'],
+			['NX5', '', 'EV-NX5ZZZBABGB'],
+			['NX100', '', 'EV-NX100ZBABGB'],
+			['NX11', '', 'EV-NX11ZZBABGB'],
+			['NX200', '', 'EV-NX200ZBABGB'],
+			['NX20', '', 'EV-NX20ZZBSBGB'],
+			['NX210', '', 'EV-NX210ZBSBGB'],
+			['NX1000', '', 'EV-NX1000BABGB'],
+			['NX300', 'SAMSUNG NX300', 'EV-NX300ZBATGB'],
+			['NX1100', '', 'EV-NX1100BABGB'],
+			['NX2000', 'SAMSUNG NX2000', 'EV-NX2000BABGB'],
+			['NX300M', 'SAMSUNG NX300M', 'EV-NX300MBSTDE'],
+			['NX30', 'SAMSUNG NX30', 'EV-NX30ZZBZBGB'],
+			['NX3000', 'SAMSUNG NX3000', 'EV-NX3000BOHGB'],
+			['NX1', 'SAMSUNG NX1', 'EV-NX1ZZZBZBGB'],
+			['NX500', 'SAMSUNG NX500', ''],
+			['NX3300', 'SAMSUNG NX3300', '']
+		]
+		
+		NX_lenses = [
+			['10mm F3.5 Fisheye', 'XL1302', 'EX-F10ANB'],
+			['16mm F2.4 Ultra-Wide Pancake', 'XL1102', 'EX-W16ANB'],
+			['20mm F2.8 Wide Pancake', 'XL1016', 'EX-W20NB'],
+			['30mm F2.0 Standard Pancake', 'XL1012', 'EX-S30NB'],
+			['45mm F1.8 Mid-Telephoto', 'XL1201', 'EX-S45ANB'],
+			['45mm F1.8 2D/3D Mid-Telephoto', 'XL1202', 'EX-S45ADB'],
+			['60mm F2.8 ED OIS SSA Tele Macro', 'XL1101', 'EX-M60SB'],
+			['85mm F1.4 ED SSA Premium Portrait', 'XL1103', 'EX-T85NB'],
+			['12-24mm F4.0-5.6 ED Compact Wide Zoom', 'XL1203', 'EX-W1224ANB'],
+			['16-50mm F2.0-2.8 S ED OIS Professional Standard Zoom', 'XL1301', 'EX-S1650ASB'],
+			['16-50mm F3.5-5.6 ED OIS Standard Power Zoom', 'XL1401', 'EX-ZP1650ZABEP'],
+			['20-50mm F3.5-5.6 ED Compact Standard Zoom', 'XL1015', 'EX-S2050NB'],
+			['20-50mm F3.5-5.6 ED II Compact Standard Zoom', 'XL1206', 'EX-S2050BNB'],
+			['18-55mm F3.5-5.6 OIS Standard Zoom', 'XL1013', 'EX-S1855SB'],
+			['18-55mm F3.5-5.6 OIS II Standard Zoom', 'XL1013i', 'EX-S1855IB'],
+			['18-55mm F3.5-5.6 OIS III Standard Zoom', 'XL1205', 'EX-S1855CSB'],
+			['50-150mm F2.8 S ED OIS Professional Tele Zoom', 'XL1406', 'EX-ZS50150ABEP'],
+			['50-200mm F4.0-5.6 OIS ED Tele Zoom', 'XL1014', 'EX-T50200SB'],
+			['50-200mm F4.0-5.6 OIS ED II Tele Zoom', 'XL1014i', 'EX-T50200IB'],
+			['50-200mm F4.0-5.6 OIS ED III Tele Zoom', 'XL1014i2', 'EX-T50200CSB'],
+			['18-200mm F3.5-6.3 ED OIS Long Zoom', 'XL1017', 'EX-L18200MB']
+		]
+		
+		NX_M_cameras = [
+			['NX Mini', 'SAMSUNG NXmini', 'EV-NXF1ZZB1IGB']
+		]
+		
+		NX_M_lenses = [
+			['9mm F3.5 ED Wide Prime', 'XM1404', 'EX-YN9ZZZZASEP'],
+			['17mm F1.8 OIS Large Aperture Prime', 'XM1405', 'EX-YN17ZZZASEP'],
+			['9-27mm F3.5-5.6 ED OIS Standard Zoom', 'XM1403', 'EX-YZ927ZZASEP']
+		]
 		
 		body += """<h3>The i-Launcher method</h3>\n"""
 		body += """<p>Queries data feed which i-Launcher and Tizen-based cameras use.  Does not support older, non-Tizen-based camera bodies.</p>\n"""
@@ -383,12 +353,12 @@ select {
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
 		body += """<h2>Software updates</h2>\n"""
-		body += """<p>If you insist on using Samsung software, you can download it <a href=\"/software\">here</a>.<p>\n"""
+		body += """<p>If you insist on using Samsung software, you can download it <a href=\"/software\">here</a>.</p>\n"""
 		
 		# end default route
 		
-	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p>
-</body>
+	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p>\n"""
+	body += """</body>
 </html>"""
 	
 	start_response('200 OK', [('Content-Type', 'text/html; charset=utf-8'), ('Content-Length', str(len(body)))])
