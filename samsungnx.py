@@ -234,7 +234,7 @@ select {
 					body += """<p><a href=\"""" + escape(t.url.encode('utf-8')) + """\">""" + j[0] + """ for """ + i[0] + """ """ + escape(t.version.encode('utf-8')) + """</a>"""
 					body += """ was released on """ + escape(t.date.encode('utf-8')) + """.</p>\n"""
 				else:
-					body += """<p>""" + j[0] + """ for """ + i[0] + """ was not released.</p>\n"""
+					body += """<p>""" + j[0] + """ for """ + i[0] + """ was not released (yet).</p>\n"""
 				del t
 		
 		body += """<p class=\"footer\"><a href=\"/\">Go back to the main page</a></p>\n"""
@@ -303,7 +303,7 @@ select {
 		]
 		
 		body += """<h3>The i-Launcher method</h3>\n"""
-		body += """<p>Queries data feed which i-Launcher and Tizen-based cameras use.  Does not support older, non-Tizen-based camera bodies.</p>\n"""
+		body += """<p>Queries data feed which i-Launcher and newer cameras use.  Does not support older (pre-NX300) cameras.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"product\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
