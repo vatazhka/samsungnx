@@ -1,2 +1,2 @@
 defusedxml==0.4.1
-gunicorn==19.2.1
+gunicorn==19.3.0
