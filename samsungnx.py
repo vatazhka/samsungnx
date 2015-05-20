@@ -150,7 +150,7 @@ p.footer {
 
 p.copyright {
 	margin-top: 6em;
-	font-size: 50%;
+	font-size: 75%;
 }
 
 pre {
