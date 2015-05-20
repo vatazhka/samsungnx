@@ -194,7 +194,10 @@ select {
 			body += """If it's a <em>.zip</em> file, unzip it. Then, place the resulting <em>.bin</em> file in the topmost folder of your memory card. """
 			body += """Next, ensure that your camera has been fully charged, then choose relevant option from the menu to update your camera/lens firmware.</p>"""
 			body += """<p>Please note that you won't be able to downgrade firmware of your camera/lens by following this procedure!</p>\n"""
-			body += """<p>Please also note that the firmware file has been directly provided by Samsung - I do not host any firmware files!</p>\n"""
+			if len(product) > 0:
+				from urllib import quote_plus
+				body += """<p>You may also find an up-to-date manual <a href=\"http://www.samsungimaging.com/manual?prd_mdl_name=""" + quote_plus(escape(product.encode('utf-8'))) + """\">here</a>.</p>\n"""
+			body += """<p>Please also note that the firmware file has been directly provided by Samsung - I do not host any downloads!</p>\n"""
 			body += """<h2>Changelog</h2>\n"""
 			body += """<pre>""" + escape(t.changelog.encode('utf-8')) + """</pre>\n"""
 		except:
