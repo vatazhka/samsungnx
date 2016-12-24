@@ -51,7 +51,7 @@ class QueryiLauncher:
 		except:
 			self.reset()
 
-class QueryUKWebsite:
+class QueryIEWebsite:
 	
 	def reset(self):
 		
@@ -63,26 +63,28 @@ class QueryUKWebsite:
 		
 		self.reset()
 		try:
-			from urllib import urlopen
-			response = urlopen('http://www.samsung.com/uk/api/support/download/' + model + '?mType=xml')
-			import defusedxml
-			from defusedxml.ElementTree import parse
-			firmware = parse(response).getroot().find('fmDownloadFileList')
-			for download in firmware.findall('downloadFile'):
-				title = download.find('localDownloadFile/NMCTTType').text.lower()
-				extension = download.find('fileExt').text.lower()
-				description = download.find('localDownloadFile/description').text.lower()
-				if ('firmware' in title or 'upgrade' in title) and 'zip' in extension and 'lens' not in description:
-					self.url = download.find('downloadUrl').text
-					self.version = download.find('localDownloadFile/CTTVersion').text
-					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;','>').replace('&lt;','<')
+			import urllib2
+			opener = urllib2.build_opener()
+			opener.addheaders = [('User-Agent', 'Mozilla/5.0')]
+			response = opener.open('http://www.samsung.com/ie/api/support/download/' + model + '?mType=json')
+			import json
+			firmware = json.load(response)
+			for download in firmware['xmlData']['fmDownloadFileList']:
+				title = download['localDownloadFile']['nmctttype']
+				extension = download['fileExt']
+				description = download['localDownloadFile']['description']
+				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
+					self.url = download['downloadUrl']
+					self.version = download['localDownloadFile']['cttversion']
+					self.changelog = download['localDownloadFile']['descFileEng']
 					break
-				elif ('firmware' in title or 'upgrade' in title) and 'zip' in extension:
-					self.url = download.find('downloadUrl').text
-					self.version = download.find('localDownloadFile/CTTVersion').text
-					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;','>').replace('&lt;','<')
+				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
+					self.url = download['downloadUrl']
+					self.version = download['localDownloadFile']['cttversion']
+					self.changelog = download['localDownloadFile']['descFileEng']
 		except:
 			self.reset()
+
 
 def app(environ, start_response):
 	
@@ -186,7 +188,7 @@ select {
 		if len(product) > 0:
 			t = QueryiLauncher(product)
 		elif len(model) > 0:
-			t = QueryUKWebsite(model)
+			t = QueryIEWebsite(model)
 		
 		try:
 			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>"""
@@ -330,8 +332,8 @@ select {
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
-		body += """<h3>The UK Samsung web page method</h3>\n"""
-		body += """<p>Queries data feed which the UK Samsung web page uses.  Recommended if the i-Launcher method does not support your gear.</p>\n"""
+		body += """<h3>The IE Samsung web page method</h3>\n"""
+		body += """<p>Queries data feed which the IE Samsung web page uses.  Recommended if the i-Launcher method does not support your gear.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
@@ -360,7 +362,7 @@ select {
 		
 		# end default route
 		
-	body += """<p class=\"copyright\">Copyright &copy; 2014 and 2015 by <a href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p>\n"""
+	body += """<p class=\"copyright\">Copyright &copy; 2014, 2015 and 2016 by <a href=\"http://www.dpreview.com/members/4380410987\">vatazhka</a> &reg;</p>\n"""
 	body += """</body>
 </html>"""
 	
