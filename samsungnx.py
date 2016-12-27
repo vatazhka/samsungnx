@@ -63,25 +63,27 @@ class QueryUKWebsite:
 		
 		self.reset()
 		try:
+
 			import urllib2
 			opener = urllib2.build_opener()
 			opener.addheaders = [('User-Agent', 'Mozilla/5.0')]
-			response = opener.open('http://www.samsung.com/uk/api/support/download/' + model + '?mType=json')
-			import json
-			firmware = json.load(response)
-			for download in firmware['xmlData']['fmDownloadFileList']:
-				title = download['localDownloadFile']['nmctttype']
-				extension = download['fileExt']
-				description = download['localDownloadFile']['description']
+			response = opener.open('http://www.samsung.com/uk/api/support/download/' + model + '?mType=xml')
+			import defusedxml
+			from defusedxml.ElementTree import parse
+			firmware = parse(response).getroot().find('fmDownloadFileList')
+			for download in firmware.findall('downloadFile'):
+				title = download.find('localDownloadFile/NMCTTType').text
+				extension = download.find('fileExt').text
+				description = download.find('localDownloadFile/description').text
 				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
-					self.url = download['downloadUrl']
-					self.version = download['localDownloadFile']['cttversion']
-					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>', '\n').replace('&gt;', '>').replace('&lt;', '<')
+					self.url = download.find('downloadUrl').text
+					self.version = download.find('localDownloadFile/CTTVersion').text
+					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;', '>').replace('&lt;', '<')
 					break
 				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
-					self.url = download['downloadUrl']
-					self.version = download['localDownloadFile']['cttversion']
-					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>', '\n').replace('&gt;', '>').replace('&lt;', '<')
+					self.url = download.find('downloadUrl').text
+					self.version = download.find('localDownloadFile/CTTVersion').text
+					self.changelog = download.find('localDownloadFile/descFileEng').text.replace('<br>', '\n').replace('&gt;', '>').replace('&lt;', '<')
 		except:
 			self.reset()
 
