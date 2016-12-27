@@ -76,12 +76,12 @@ class QueryIEWebsite:
 				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
 					self.url = download['downloadUrl']
 					self.version = download['localDownloadFile']['cttversion']
-					self.changelog = download['localDownloadFile']['descFileEng']
+					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>','\n')
 					break
 				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
 					self.url = download['downloadUrl']
 					self.version = download['localDownloadFile']['cttversion']
-					self.changelog = download['localDownloadFile']['descFileEng']
+					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>','\n')
 		except:
 			self.reset()
 
