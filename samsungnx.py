@@ -51,7 +51,7 @@ class QueryiLauncher:
 		except:
 			self.reset()
 
-class QueryIEWebsite:
+class QueryUKWebsite:
 	
 	def reset(self):
 		
@@ -66,7 +66,7 @@ class QueryIEWebsite:
 			import urllib2
 			opener = urllib2.build_opener()
 			opener.addheaders = [('User-Agent', 'Mozilla/5.0')]
-			response = opener.open('http://www.samsung.com/ie/api/support/download/' + model + '?mType=json')
+			response = opener.open('http://www.samsung.com/uk/api/support/download/' + model + '?mType=json')
 			import json
 			firmware = json.load(response)
 			for download in firmware['xmlData']['fmDownloadFileList']:
@@ -76,12 +76,12 @@ class QueryIEWebsite:
 				if ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower() and 'lens' not in description.lower():
 					self.url = download['downloadUrl']
 					self.version = download['localDownloadFile']['cttversion']
-					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>','\n')
+					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>', '\n').replace('&gt;', '>').replace('&lt;', '<')
 					break
 				elif ('firmware' in title.lower() or 'upgrade' in title.lower()) and 'zip' in extension.lower():
 					self.url = download['downloadUrl']
 					self.version = download['localDownloadFile']['cttversion']
-					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>','\n')
+					self.changelog = download['localDownloadFile']['descFileEng'].replace('<br>', '\n').replace('&gt;', '>').replace('&lt;', '<')
 		except:
 			self.reset()
 
@@ -188,7 +188,7 @@ select {
 		if len(product) > 0:
 			t = QueryiLauncher(product)
 		elif len(model) > 0:
-			t = QueryIEWebsite(model)
+			t = QueryUKWebsite(model)
 		
 		try:
 			body += """<h2>The current firmware version is """ + escape(t.version.encode('utf-8')) + """.</h2>"""
@@ -332,8 +332,8 @@ select {
 		body += """</optgroup>"""
 		body += """</select>&nbsp;<input type=\"submit\" value=\"Check\"></p></form>\n"""
 		
-		body += """<h3>The IE Samsung web page method</h3>\n"""
-		body += """<p>Queries data feed which the IE Samsung web page uses.  Recommended if the i-Launcher method does not support your gear.</p>\n"""
+		body += """<h3>The UK Samsung web page method</h3>\n"""
+		body += """<p>Queries data feed which the UK Samsung web page uses.  Recommended if the i-Launcher method does not support your gear.</p>\n"""
 		body += """<form action=\"/check\" method=\"get\"><p><select name=\"model\">"""
 		body += """<optgroup label=\"NX Cameras\">"""
 		for i in NX_cameras:
